@@ -1,0 +1,13 @@
+\subsection*{Aufgabe 3}
+
+Folgende Grammtik beschreibt die Gewünschte Sprache:
+
+\begin{align*}
+	S &\to B  \\
+	B &\to B \uparrow M  \mid (B) \uparrow M \mid B \uparrow (M) \mid M \\
+	M &\to P * M \mid (P) * M \mid P * (M) \mid P \\
+	P &\to Z + P \mid  (Z) + P \mid Z + (P) \mid Z \\
+	Z &\to S \mid a \\
+\end{align*}
+
+Dabei gilt $a \in \{a,b, ..,z \}$. Die Struktur der Grammtik erzwingt die geforderte Assoziativität.

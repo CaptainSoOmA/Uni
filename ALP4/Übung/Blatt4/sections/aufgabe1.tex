@@ -1,0 +1,34 @@
+\subsection*{Aufgabe 1}
+Entwickeln Sie mit universellen kritischen Abschnitten eine faire Lösung für das Leser-Schreiber-Problem.
+
+
+Für diese Aufgabe nehem ich an, dass ein universeller Kritischer Abschnitt, wie er im Buch implementiert ist, zur verfügung steht. Es ist noch eien Invariante anzugeben, die das Problem charakterisiert und zu zeigen, wie diese Invariante sich auf die Fairness des Problems auswirkt.
+
+Folgede Invariante wurde im Buch angeben:
+\begin{tabbing}
+func \=c(k uint) bool \{ \\
+\>	if \= k == r  \{ \\
+\>	\>	return nW == 0 \&\& Blocked(w) == 0 \\
+\>	\} \\
+\>	return nR == 0 \&\& nW == 0 // w \\
+\} \\
+
+\end{tabbing}
+
+Diese Eintrittsedinugn ist ohne weiteres nicht fair. Sie gibt einem der Parteien immer das recht noch einen weiteren zugriff auf den kritischen Abschnitt zu starten und verweigert dies der anderen, so lange eine die Hoheit über den kA hat. (so können sich 2 abwächeselnde schreiber für immer die Konrtrolle an sich reißen). 
+Dieses Problem lässt sich lösen indem der Zugriff nicht gewährt, wenn ein anderer Prozess aus einer anderen Klasse zugriff fordert. 
+\\
+Eine einfache Variation:
+\\
+
+\begin{tabular}{ c | c | c | c }
+	Prozess  	& Bedingung &  \textless IN \textgreater & \textless OUT \textgreater \\
+	\hline
+	Leser		&	nW == 0 \&\& (prio == leser $\mid \mid$ bW == 0) & 	nW++		&	$nW --$ ; prio = schreiber		\\
+	schreiber		&	nS == 0 \&\& (prio == leser $\mid \mid$ bS == 0) & 	nS++		&	$nS --$ ; prio = leser \\		
+
+	
+\end{tabular}
+\\
+
+Diese Veränderungen ermöglichen es einem Prozess einer Klasse nur dann ebenfalls in den kA einzutreten, wenn kein Prozess der anderen Klasse ebenfalls eintritt begehrt. Die Variablen bW und bS werden vom universellen kritischen Abschnitt bereitgestellt. 

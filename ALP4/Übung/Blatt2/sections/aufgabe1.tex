@@ -1,0 +1,123 @@
+\section*{Aufgabe 1}
+
+Untersuchen Sie die Tauglichkeit zur Sperrsynchronisation der folgenden Implementierungen von Lock/Unlock. Hierbei untersuche Ich die gegebenen Implementierungen bezüglich auf Gegenseitigen Ausschluss, Behinderungsfreiheit, Verklemmungsfreiheit und Fairness.
+
+
+\subsection*{ a) }
+
+Der gegebene Code:
+
+\begin{mylisting}
+
+
+
+\begin{tabbing}
+func \= Lock \= (p uint)  \{  \\
+\>	for \{ \> \\
+\>	\>	a[1-p] = \! a[p] \\
+\>	\>	if a[p] \&\& ! a[1-p] \{ break \} \\
+\>	\}  \>\\
+\}\> \> \\
+\end{tabbing} 
+
+
+
+\begin{tabbing}
+func\= Unlock (p uint) \{\\
+\>	a[1-p] = true\\
+\}\\
+\end{tabbing} 
+
+
+
+\end{mylisting}
+
+\paragraph{ Gegenseitigen Ausschluss : }
+
+Dei gegeben Implemtierung garantiert keinen gegnseitigen Ausschluss! Treten beide Prozesse gleichzeitig in die Funktion Lock unter der Voraussetzung, das a[0] und a[1] verschiedene Werte haben und beide lesen bevor einer von ihnen den neuen Wert Überschreiben kann, so haben a[0] und a[1] nach dem schreiben ebenfalls verscheidene Werte. Dies ermöglicht beiden Prozessen gemeinsam in den geschützten Bereich einzutringen.
+
+\paragraph{ Behinderungsfreiheit : }
+
+Behinderungsfreihet ist gegeben, da keine Bestimmte Konfiguration von Variablen vorausgestzt ist, um den Kritischen Abschnitt zu betreten. Die Beiden Variablen müssen entgegengestzte Werte haben und dies wird durch die Zuweisung garantiert, sofern kein weiterer Prozess Lock aufruft.
+
+\paragraph{ Verklemmungsfreiheit : }
+
+Auch die Verklämmungsfreihei der Implementierung ist nicht gegeben. Zwei Aufrufende Prozesse können, im umgeschickten Fall, die Beiden Variablen so überschreiben, dass sie den gleichen Wert haben und so kann niemals ein Prozess in den kritischen bereich eintreten.
+
+\paragraph{ Fairness : } Über die Fairness kann nicht so viel geagt werden. Da die Implementierung die wichtigsten merkmale eines Schlosses nicht erfüllt.
+
+\newpage
+
+\paragraph{ b) }	
+
+Der gegebene Code:
+
+\begin{mylisting}
+\begin{tabbing}
+
+func \= Lock \= (p uint) \{  \\
+\>	for \{ \>  \\
+\>	\>	interested[p] = true  \\
+\>	\>	if  \= interested[1-p] \{   \\
+\>	\>	\>	interested[p] = false \\
+\>	\>	\} \\
+\>	\>	if interested[p] \{ break \} \\
+\>	\} \> \\
+\}\> \> \\
+
+\\ 
+func Unlock (p uint) \{ \> \> \\
+\>	interested[p] = false \> \\
+\} \> \> \\
+\end{tabbing} 
+\end{mylisting}
+
+\paragraph{ Gegenseitigen Ausschluss : }
+
+Der Gegenseitige Auschluss it bei dieser Implementierung garantiert.
+
+\paragraph{ Behinderungsfreiheit : } Ist gegeben. Wenn nur ein Prozess in den kritischen Bereich vordringen will, so kann er dies direkt tun, da die zweite Bedingung  nun nicht eintritt ( $ i_{1-p} $ ist false).
+
+
+\paragraph{ Verklemmungsfreiheit : }
+Diese Implementierung ist nicht Verklemmungsfrei. Wenn beide in den kritischen Abschnitt kommen behindern sie sich gegenseitig. Keiner der beiden Prozesse gibt nach.
+
+\paragraph{ Fairness : } 
+Diese Implemntierung ist Fair. (sofern man von einem verklemmenden Prozess sagen kann das er fair ist.)
+
+\newpage
+
+\paragraph{ c) }
+
+
+Der gegebene Code:
+
+\begin{mylisting}
+\begin{tabbing}
+
+func \= Lock (p uint) \{ \\ 
+\>	interested[p] = true  \\
+\>	for\=  interested[1-p] \&\& favoured != p \{  \\
+\>	\>	Null() \\
+\>	\} \\
+\} \\
+\\
+
+func Unlock (p uint) \{ \\
+\>	interested[p] = false \\
+\} \\
+
+\end{tabbing} 
+
+\end{mylisting}
+
+\paragraph{ Gegenseitigen Ausschluss : } Die Implementierung sichert den Gegensietigen Auschluss. Sollte der andere Prozess seine intersse signalisiert haben, so kann ich nur wenn ich favourisiert bin nicht in die Schleife eintreten (alos in den kritischen Abschnitt eintreten).
+
+
+\paragraph{ Behinderungsfreiheit : } Ist gegeben. Wenn kein anderer Prozess interesse bekundet, so kann ich nicht in die schleife kommen. Dies ermöglicht ein dirketes eintretn in die kritische Sektion.
+
+
+\paragraph{ Verklemmungsfreiheit : } Die Implementierung ist verklemmungsfrei. Sie favourisiert einen Prozess und lässt diesen immer eintreten. Somit kann sich nichts verklemmen.
+
+
+\paragraph{ Fairness : } Diese Implementierung ist nicht fair. Sie Ändert den Favourisierten Prozess nicht. Dieser ist immer auf den initialen Wert gesetzt und der entsprechende Prozess kann im zweifelsfall die ganze Zeit ím kritischen Abschnitt bleiben.

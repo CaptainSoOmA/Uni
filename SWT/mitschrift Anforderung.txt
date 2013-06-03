@@ -1,0 +1,4 @@
+funktionale Anforderung
+
+- Rezept Eingabe und Ausgabe
+	- Verawaltung

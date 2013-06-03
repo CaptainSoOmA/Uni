@@ -1,0 +1,155 @@
+Aufgabe 6-1 (Recherche Softwarearchitektur)
+
+1.Makroarchitektur
+
+Makroarchitekur ist eine Architektur für ein Gesamtsystem. Sie beschreibt das gesamte Funktionieren und die Wesentlichen Komponenten. Sie befasst sich mit Aspekten wie Anforderungen, Entscheidungen und Strukturen auf einem hohen Abstraktionsniveau. 
+
+2.Mikroarchitektur
+
+Eine Mikroarchitektur beschreibt eine Lösungen auf unterster Ebene. Dabei handelt es sich dann um Detail-Entwurf mit großer Nähe zum Quelltext ohne fundamentalen Einfluss auf eine (Makro -) Architektur. 
+
+3.Architekturstil --> Welche gibt es und wodurch zeichnen sie sich aus?
+
+Der Arhcitekturstil beschreibt wie eine Software im Groben aussieht und nach welchen Grundprinzipien sie organisiert ist. es gibt folgende Stile:
+
+•Schichten
+
+	bei diesem Stil werden verscheidene Abstraktionsebenen genutzt. Jede Eben kann auf die unter ihr liegende Ebene zugreifen und gibt Daten an Objekte aus der Ebene über oder aus der eigenen weiter.
+
+•Datenflussnetze (Pipes-and-Filters)
+
+	Ein Dantenfluss netz ist eine aneianderreihung von Filtern und pipes. Die Pipes transportieren die Daten von Filter zu Filter. Die Filter modifiziern die Daten.
+
+•Objektnetze mit Datenkapseln
+
+	Objekte werden unterienander so gekoppelt, dass sie das Problem lösen. Diese Objekte und ihre Beziehungen werden komplett Problemabhängig gestaltet.
+
+•Ereignissteuerung mit impliziten Aufrufen
+
+	An einem zentralen Punkt registrieren sich alle Komponenten und empfangen dancch ereignisse. Sie können selber auch ereignisse aussenden.
+
+•Ablagebasierte Struktur
+
+	In einem zentralen Verzeichnis werden alle Daten von allen beteiligten abgelegt. Diese können somit auf alle Daten zugreifen und mit allen anderen Subsystemen inzteragieren.
+
+•Interpretierer oder Regelsysteme
+
+	Die Eingangsdaten des Systems werden durch einen Interpreter in ein Ausführbares Programm umgewandelt.
+
+
+4.Architektursicht(en) --> Welche gibt es und wodurch zeichnen sie sich aus
+
+Architektursichten beschrieben einen Blickpunkt auf das Softwareprojekt und kapsen einen Aspekt der Beschreibungen.
+
+    Kontextsicht – Betrachtung des Systems von außen
+
+    Struktursicht – Betrachtung der statischen Struktur des Systems
+
+    Verhaltenssicht – Betrachtung des dynamischen Verhaltens des Systems
+
+    Abbildungssicht – Betrachtung der Abbildung auf Artefakte, Prozessoren und Teams.
+
+
+
+5.Architekturebene(n) --> Welche gibt es und wodurch zeichnen sie sich aus?
+
+Hauptsächliches Beschreibungselement auf dieser Ebene ist das Subsystem. Ein Subsystem setzt sich aus mehreren Modulen (Entwurfsebene) zusammen.
+
+je nach Granularität können 3 oder mehrere Ebenen Unterschieden werden:
+
+Organisationen : Organisationsweite Aspekte wie Geschäftsprozesse, Standards, Richtlinien 
+Systeme : Systemweite Aspekte wie funktionale und nicht-funktionale Anforderungen, Architektur-Richtlinien 
+Bausteine : Bausteinbezogene Aspekte wie funktionale und nicht-funktionale Anforderungen 
+
+
+6.Systembaustein
+
+Ein Systembaustein ist eine der kleinsten abstrakten Datentypen, die in einem Softwaresystem eingesetzt werden können. Er kann dabei andere Systembausteine benötigen und eine oder mehrere Schnitstellen benutzten.
+
+
+7.Single Responsibility Principle (SRP, dt. Eine-Verantwortlichkeit-Prinzip) 
+
+In der objektorientierten Programmierung bedeutet das Single Responsibility Principle, dass jede Klasse nur eine Aufgabe zu erfüllen soll. Die Klasse sollte dabei so konstruiert sein, dass sie nur Funktionen enthällt die zur Erfüllung der Aufgabe beitragen.
+
+
+
+
+
+Aufgabe 6-2(Architekturstile)
+
+
+1.Erläutern Sie den Unterschied oder Zusammenhangzwischen:
+
+a.Schnittstelle und Signatur
+
+	Eine Schnittstelle ist eine sichtabre Eigenschaft eines Objekts. Ein solches Objekt kann nur durch seine Schnittstellen mit der Außenwelt interagieren und ist auch nur durch seine Schnittstellen charakterisiert.
+	Eine Signatur ist eine charakterisierung einer Methode. (z.B durch festlegen der Eingansg und Rückgabe Typen).
+	Eine Schnittstelle wird durch eine Signatur spezifiziert. 
+	
+
+b.Klasse und Komponente
+	
+	Eine Klasse ist um ein Geheimnis konstruiert und verarbeitet alles notwendige das hierzu gehört. Eine Komponenete ist eine Sammlung von Klassen die Zusammenarbeitzen um eine bestimmtes Problem zu lösen.
+
+
+c.Kohäsion und Kopplung
+
+	Unter dem Begriff der Kopplung versteht man die Interaktion verschiedenen Programmeinheiten bei der Lösung eines Problems. 
+	Kohäsion beschriebt das Maß indem jede Programmeinheit verantwortlich für genau eine wohldefinierte Aufgabe ist. 
+	Man strebt somit eine lose Koppluing und eine hohe Kohäsion an.
+
+
+
+
+2.
+
+•Schichten
+
+	Ein WYIWYG Editor (z.B. MS Word,..). Ein solcher Editor muss darstellung und Inhalt trennen, was durch eine solche Architektur einfach möglich ist.
+
+•Datenflussnetze 
+
+	Audacety oder eine Ähnliche Soundverarbeitungs Software. Die verschieden Bearbeitungs Algorithmen können gut durch eine solche Architektur abgebildet werden.
+
+•Objektnetze mit Datenkapseln
+
+	Ein Computerpiel. Die meisten Objekte und ihre relationen sind so am effizentesten darstellbar.
+
+•Ereignissteuerung mit impliziten Aufrufen
+
+	Eine Abonentensystem in einem sozialen Netzwerk (twitter ...). Die Betriebslogik eines solchen System kann hierüber am besten abgebildet werden.
+
+•Ablagebasierte Struktur
+
+	Ein dezentrales Versionskontrollsystem (so etwas wie GIT). Alle müssen auf den gleichen Datenbestand zugreifen und alle Oprationen sollten bei allen die auf do einem System arbeiten in Gleicher Reihenfolge stattfinden.
+
+•Interpretierer oder Regelsysteme
+
+	Wolfram Alpha. Ein klassisches Expertensystem. Ein Interpreter muss zunächstz die Formulierung in natürlicher Sprache umformulieren.
+
+
+3.
+
+a.Echtzeitverhalten (d.h. zugesicherte Reaktionszeiten des Systems)
+
+	Ereignisssteuerung. In einem solchen System müssen nur wenige aufrufe ausgeführt werden nach jeder neuen Eingabe. Allerdings kann ein soclhes System im zweifel schwer zu beschreiben sein.
+
+b.hohe Portabilität (über mehrere Betriebssystemplattformen)
+	
+	Schichten Modell. Nur die unterste Eben muss im eidealfall für ein neues Betriebsystem neu geschrieben werden.
+
+c.geringer Speicherplatzverbrauch
+
+	Datennetzte. Da die daten in einer Pipline weitergerecith werden ist am wenigsten Speicher Overhead in solch einer Architeltur vorhanden.
+
+
+
+Quellen:
+
+Software-Architektur:Grundlagen - Konzepte - Praxis
+von: 
+Vogel, O., Arnold, I., Chughtai, A., Ihler, E., Kehrer, T., Mehlig, U., Zdun, U.
+
+Wikipedia
+
+Skript

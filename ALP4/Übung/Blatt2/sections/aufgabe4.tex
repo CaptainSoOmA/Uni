@@ -1,0 +1,64 @@
+\section*{Aufgabe 4}
+
+\subsection*{  a ) }
+
+Begründen Sie die Korrektheit der ersten Version von Laports Bäckerei Algorithmus
+
+Grundidee: Der Bäckerei Algorithmus nutzt das Konzept eines Ticket Systmes um mehrere Prozesse zu sperrsynchronisieren. Dabei orientieren sich die Prozesse an einer Ticket-Nummer, die die Reihenfolge des Zugriffs der verschiedenen Prozesse darstellt. Die Prozesse wählen dabei selber ihre Nummer.
+
+Der Algorithmus hat folgende Form.
+
+\begin{mylisting}
+\begin{tabbing}
+
+func \= Lock (p uint) \{ // p < P \\
+\>	drawing[p] = true \\
+\>	number[p] = maximum() + 1 \\
+\>	drawing[p] = false \\
+\>	for \= a:= uint(0); a < P; a++ \{ \\
+\>	\>	for \= drawing[a]  \\
+\>	\>	\>	\{ Null() \} \\
+\>	\>	for number[a] > 0 \&\& less(a, p)  \\
+\>	\>	\>	\{ Null() \} \\
+\>	\} \\
+\} \\
+
+func Unlock (p uint) \{ \\
+\>	number[p] = 0 \\
+\} \\
+
+\end{tabbing}
+\end{mylisting}
+
+\paragraph{ Gegenseitigen Ausschluss : } Der gegenseitige Ausschluss ist gegeben, da Über die Ticket Operation eine klare Reihenfolge zur bearbeitung erzwungen wird. Wer zu erst kommt darf auch zu erst auf den kritischen Abschnitt zugreiefen. Das Problem (das in solche Situationen immer auftritt), das die zuweisung der Wartenummer nicht atomar ist wird ducrh zwei Maßnahemen neutralisiert. Erstens, bestimmen die Prozesse selber ihre Nummer, es gibt somit keinen zentralen Zähler bei dem ein Problem mit dem Übreschreiben auftreten könnte. Dies führt allerdings dazu, dass mehrere Prozesse sich die gleich Nummer überlegen können. Dies wird durch eine zweite Maßnahme abgefangen: bei gleicher Wartenummer entscheidet die Prozessnummer. Somit kann immer nur ein Prozess in den kritischen abschnitt eintreten: der Prozess muss die aktuelle nummer (drawing) haben und zeitgleich die niedrigste Prozessnummer.
+
+\paragraph{ Behinderungsfreiheit : } Es gilt Behinderungsfreiheit. Wenn nur ein Prozess zieht, so kriegt er immer die niedrigste Nummer und ist sofort an der Reihe.
+
+\paragraph{ Verklemmungsfreiheit : } Ein solcher Algorithmus kann nicht verklemmen. Die Ordnung der Prozessnummern erzwingt, dass ein Prozess immer an der Reihe ist. Es kann keine Situation geben, in der kein Prozess als nächstes in die Kritische Sektion eintreten kann.
+
+\paragraph{ Fairness : } Der Algorithmus ist fair. Nachdem man den kritischen Bereich verlassen hat, so kann man nur eine neue Nummer ziehen. Somit kann man nicht 2 mal direkt hintereinander an der Reihe sein oder einen anderen Prozess ausschneiden.
+
+
+\subsection*{  b ) }
+
+Erklären Sie den Schritt von der ersten zur zweiten Version
+
+In der vereunfachten Version hat die Eintrittsfunktion folgenden Aufgabe:
+
+\begin{mylisting}
+\begin{tabbing}
+
+func \= Lock(p uint) \{ // p < P \\
+\>	number[p] = 1 \\
+\>	number[p] = max()+1 \\
+\>	for \= a:= uint(1); a < P; a++ \{ \\
+\>	\>	if \= a != p \{ \\
+\>	\>	\>	for number[a] > 0 \&\& less(a, p) \{ Null() \} \\
+\>	\>	\} \\
+\>	\} \\
+\} \\
+
+\end{tabbing}
+\end{mylisting}
+
+In dieser Version ist die Blockierung für das zieghen herausgenommen. Prozesse müssen nicht mehr darauf warten ob ein andere Prozess grade seine nummer zieht. Diese Änderung funktioniert, da das zeiehen der Nummer nicht atomar abgeschirmt sein muss. Sollte ein Prozess ziehen so kriegt er im schlimmsten Fall die gleiche nummer wie der aktuelle Prozess. Somit kommt er auf jeden Fall dran. Die Änderung verändert somit das Verhalten der Implementierung nicht.

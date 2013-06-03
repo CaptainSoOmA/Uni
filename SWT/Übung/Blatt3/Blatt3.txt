@@ -1,0 +1,117 @@
+Aufgabe 3-1: Klärung und Erläuterung von UML Konstrukten
+
+
+Erläutern Sie die folgenden UML Konstrukte:
+
+- Klassen und Objekte: 
+Eine Klasse wird durch 3 Rechtecke übereinander notiert. Im ersten steht der Name der Klasse, im zweiten finden sich die Attribute und in der dritten die Operationen. Dabei ist nur der erste Kasten obligatorisch. Je nach Klasse kann es sein, dass sie keine Operationen oder Attribute besitzt. 
+Ein Objekt wird analog zur Klasse notiert, nur das die Attribute Werte haben, die Operationen fehlen und das Objekt einen individuellen namen haben. Dieser wird unterstrichen
+
+
+− Attribute und Methoden
+Attribute und Methoden werden durch ihre Signaturen notiert. Diese Befinden sich in dem entsprechenden Kasten der zur der Klasse gehört zu der sie jeweils gehören. Dabei können Typen und Parameter optional sein. Ein Atrribut und eine Methode gehört immer zu einer Klasse.
+
+
+− Assoziationen
+Assoziation wird durch eine durchgezogenen Linie notiert. An den Enden der Linien wird mit einer Zahl die Multiplizität angegeben. Dies ist allerdings optional. Außerdem kann die Assoziation ach noch einen Namen haben. Dieser steht über der Linie
+
+
+− Multiplizität
+Multiplizität wird dutch eine Zahl am ende einer Assoziation angegeben. Sie ist optional und kann sowohl eine positive Zahl sein, wie ein Intervall oder ein Stern. Ein Intervall wird durch zwei Zahlen angegeben, die mit einem '..' getrennt werden.
+
+
+− Vererbung
+Vererbung ist eine Linie mit einem Dreieck am Ende, dass auf die Klasse verweist von der geerbt wird.
+
+
+− Komposition und Aggregation
+Aggregation wird durch eine Linie mit einer Raute am Ende dargestellt. Hier gibt es ebenfalls eine optionale Multiplizität.
+
+
+
+
+
+
+Aufgabe 3-2: UML Klassen- und Objektdiagramme, abstrakte Klassen und Interfaces
+
+
+1. Erklären Sie den Unterschied zwischen einem Klassendiagramm und einem Objektdiagramm. Was ist der jeweilige Einsatzzweck?
+
+Ein Klassen Diagramm beschreibt eine Klasse, eine "Baupause" für Objekte. Die Objekte sind Exemplare diese Klassen. Ein Objektdiagram zeigt genau ein einzelnens Exemplar. Hier sind alle Attribute mit Werten ausgefüllt und die Signaturen der Operationen fehlen.
+
+
+2. Wie werden in der UML abstrakte Klassen bzw. Interfaces notiert?
+
+Interfaces und abstrakte Klassen bekommen die Bezeichnung Interface bzw. abstrakt über dem Klassennamen. 
+
+
+3. Was ist der Unterschied zwischen abstrakten Klassen und Interfaces? Wie ist deren jeweiliger Verwendungszweck?
+
+Ein Abstarakte Klasse verd beerbt ein Interface Implementiert. Dies macht auf der Ebene der UML Notation keinen großen Unterscheid kann aber bei der Implementierung gewaltige Unterscheide erzeuegene. Das bedeutenste Stichwort ist hier Mehrfachvererbung.
+
+
+4. Entwerfen Sie ein möglichst vollständiges Klassendiagramm aufgrund folgender Beschreibung. Achten Sie auch darauf, dass das Klassendiagramm nicht mehr
+aussagt, als der Text hergibt.
+
+siehe beigefügtes Bild.
+
+
+
+
+
+
+Aufgabe 3-3: UML Sequenzdiagramme
+
+
+1. Was ist ein Sequenzdiagramm und wozu dient es im Kontext der Softwareentwicklung?
+
+Ein Sequenzdiagramme zeigt einen Ablauf eines Programms. Es kann eine dynamsiche sicht auf die Interaktion von Klassen und Objekten beietn und anzeigen wie sich der Datenfluss in einer Arichtektur verhält. Eine solche Sequenzdiagramme wir in der Anforderungs Analyse genutzt. Es dient dazu fehlende Abstraktionen (meist Klassen) in Aböufen zu finden und erklärt einen solchen Abauf.
+
+
+2. Welche Beschreibungselemente werden sowohl in Klassendiagrammen als auch in Sequenzdiagrammen benutzt?
+
+Klassen und Operationen sind in beiden Diagrammen vertreten.
+
+
+3. Was ist in der Vertikalen dargestellt?
+
+Die Vertikale in einem Sequenzdiagramme ist der Zeitverlauf.
+
+
+4. Wie wird ein Aufruf einer Methode eines Objektes dargestellt?
+
+Durch eine Nachricht wird ein Aufruf einer Methode dargestellt.
+
+
+5. Ist eine Nachricht das gleiche wie ein Methodenaufruf?
+
+Nein. Eine Nachricht ist das Auslösende Event das eine Ḿethode startet. Im Methodenverlauf können weitere Methoden aufgerufen werden.
+
+
+6. Wie kommen die Objekte aneinander heran?
+
+Indem sie sich gegenseitig durch Nachrichten aktivieren und so Daten austauschen.
+
+
+7. Woran ist klar zu erkennen, dass Sequenzdiagramme immer nur einen von vielen möglichen Abläufen darstellen?
+
+Es kommen nicht alle Interaktionen vor und es ist zufällig, wie sie die Eingabedaten verhalten. Dies kann von Diagramm zu Diagramm anders sein.
+
+
+8. Geben Sie jeweils die Bezeichnung der 15 mit Pfeilen gekennzeichneten Diagrammelemente (Grafik auf der folgenden Seite) an bzw. wofür diese Diagrammelemente stehen.
+
+1) name des Sequenzdiagramme : gibt dem entsprechenden Ablauf einen Namen
+2) Objekt : bezeichnet das Objet und die zu grunde liegende Klasse
+3) User : spezifiziert eingabe
+4) Nachricht : Methodenaufruf
+5) Objekt mit namen tb der Klasse EmailClient
+6) Zeitverlauf
+7) Methodenaufruf
+8) Operationsaufruf (intern)
+9) Aktivierung
+10) Nachricht (Aufruf einer Methode)
+11) Aktivierung eines weiteren Objekts
+12) Datenfluss
+13) Subrutine
+14) Loop Bedingung
+15) Terminierung

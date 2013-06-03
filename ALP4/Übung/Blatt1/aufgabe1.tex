@@ -1,0 +1,21 @@
+\subsection*{Aufgabe 1}
+
+\paragraph{a)} \textit{Jeder deterministische Algorithmus ist determiniert.}
+\\
+Das stimmt. Eine gleiche Abfolge erzwingt auch gleiche Ergebnisse. (Außer Anweisungen wie Zufallsgeneratoren oder abhängigkeiten von Eingabe Daten ist vorhanden, das liegt aber in der Definition von Alogrithmus)
+
+\paragraph{b)} \textit{Jeder determinierte Algorithmus ist deterministisch.}
+\\
+Nein. Als gegenbeispiel kann man sich einen Algorithmus vorstellen der ermittelt der den Nachfolger einer Zahl ermittelt. Dieser könnte so lange zufallszahlen erraten bis er die entsprechende zahl gefunden hat. Ein solcher algorithmus ist determiniert (er findet immer das gewünschte ergebnis), aber er ist nicht deterministisch.
+
+\paragraph{c)} \textit{Jeder deterministische Algorithmus ist sequentiell.}
+\\
+Da in einem determinierten Algorithmus die  Reihenfolge der Abarbeitung der Anweisungen eindeutig festgelegt ist ein solcher Alogrithmus ebenfalls sequentiell.
+
+\paragraph{d)} \textit{Jeder nichtsequentielle Algorithmus ist nicht determiniert.}
+\\
+Dies gilt nich. Es gibt Algorithmen die nichtsequentiell sind aber einen klar definiertes Ergebnis haben. Genau um solche Algorithmen werden in ALP4 erzeugt.
+
+\paragraph{e)} \textit{Denken Sie über die Frage nach, ob jeder sequentielle Algorithmus determiniert ist.}
+\\
+Das Hängt von den verfügbaren Operationen ab, die ein Algorithmus ausführen kann. Sind dort socleh Anweisungen wie "echte" Zufallszaheln erlaubt, so ist ein sequentieller Algorithmus nicht determiniert. Ist jede Instruktion determiniert, so ist auch eine Folge von Instruktionen mit fester reihenfolge determiniert.

@@ -1,0 +1,31 @@
+\subsection*{Aufgabe 1}
+
+Erläutern Sie die Funktionsweise binärer Semaphore zur Sicherstellung des gegenseitigen
+Ausschlusses mehrerer Prozesse an folgendem Beispiel, wobei Sie den jeweiligen Zustand
+in Tabellenform protokollieren:
+
+Initialisierung mit 1; 
+Prozess 1 ruft P auf; 
+Prozess 2 ruft P auf; 
+Prozess 3 ruft P auf;
+Prozess 1 ruft V auf; 
+Prozess 4 ruft P auf; 
+Prozess 3 ruft V auf; 
+Prozess 5 ruft P auf.
+
+\paragraph*{Tabelle:}
+
+\begin{tabular}{ c | c | c | c }
+	Prozess  & Aufruf &  Semaphore & Bemerkung\\
+	\hline
+		&	I 	& 	1		&	Initialisierung		\\
+	1	&	P	&	0 		& 	1. im k.A.		\\
+	2	&	P	&	-1		&	2 blockiert		\\
+	3	&	P	&	-2		& 	3 blockiert		\\
+	1	&	V	&	-1		&	2. im k.A.		\\
+	4	&	P	&	-2		&	4 blockiert		\\
+	3	&	V	&	-2		&	3. im k.A.		\\
+	5	&	P	&	-3		&	5 blockiert		\\
+	
+\end{tabular}
+

@@ -1,0 +1,95 @@
+Aufgabe 4-1
+
+a) Was ist ein Anwendungsfall (Use Case) im Kontext der Softwareentwicklung (unabhängig von der UML) und wozu dient er?
+
+
+Ein Anwendungsfall beschreibt alle möglichen Szenarien, die eintreten können, wenn ein nutzer einer Software diese für ein bestimmtes Ziel benutzten will. Er beschreibt, was inhaltlich beim Versuch der Zielerreichung passieren kann und abstrahiert von konkreten technischen Lösungen. Diese Abstraktion dient dazu im vorfeld die Benutztung und deren Situation mit zu bedeneken. Dies kann helfen sich von nicht von technischen Fragen alleine Leiten zu lassen und die Benutzung der Software in den Fokus zu bekommen.
+
+
+
+b)
+
+Hier ist die Zusammenfassung die Cockburn selber leifert.
+
+Work top-down: Scope, Actors, Goals, Main story, Alternative conditions, Alternative paths.
+Work middle-out: Start at user goals, go up to strategic level, then down to subfunctions.
+Get clear about the scope of the system you are describing.
+Brainstorm all the actors, human and non, who have an operational goal against the system.
+Brainstorm all their goals against the system, over the entire lifetime of the system.
+Double check for time-based and other events that cause the system to react.
+Write the actor-goal list, double check it, prioritize, merge, reconsider goals.
+Recognize that the actors are only there to help you find all your use cases.
+Work the scope outward: define the system that contains the system under discussion.
+Extend each goal outward to find out
+who really cares
+about achieving that goal.
+Draw the primary actors and their goals against the outermost containing system.
+Add those to the list of use cases to write.
+Review all the above, prioritize and reconsider.
+Pick a use case to write.
+Brainstorm the stakeholders.
+Write how their interests are satisfied at the successful conclusion of the use case.
+Write what interests must be protected in case there is failure of the use case.
+Write the precondition: what the system has ensured is certainly true.
+Write what event or thought triggers the main success scenario.
+Write the main success scenario.
+Write each sentence as a goal succeeding, distinctly moving the process forward.
+Write:
+	"At some time, ActorA kicks ActorB with some information", or
+	"System verifies validation conditions are met", or
+	"System updates its state", or
+	"ActorA has ActorB kick ActorC".
+Show the intent of the actor, what it/they want and get accomplished in that step.
+Avoid user interface descriptions.
+Manage the level of goal accomplishment so that the scenario is between 3 and 11 steps long.
+Verify that the interests of all stakeholders are fully met.
+Check that the sequencing requirements in the steps - or lack thereof - are clear.
+Brainstorm the failures and alternative paths.
+Include only the failures the system must detect and handle.
+Write the failure or alternative condition as a condition phrase or sentence.
+Write a scenario fragment showing how the alternative course leads to goal failure or success.
+Write using the same rules as for the main success scenario.
+Update the main success scenario with the new validations found while writing the extensions.
+Put into a sub use case any sub-goals that got too complex to fit neatly in this use case.
+Let the goals-becoming-use cases be your unfolding story.
+Remember, even a fairly bad use case is still a good use case, so don't worry
+
+Quelle: http://www2.dis.ulpgc.es/~jsanchez/MDS/EffectiveUseCases.pdf
+
+
+Hier habe ich nochmal alle für mich als besonders bedeutsam erscheinenden Ziele notiert:
+
+(1) : Work top-down: Scope, Actors, Goals, Main story, Alternative conditions, Alternative paths. 
+Vogelperspektive: Zielsetzung, Aktöre, Hauptunternehmung, Alternative Zielsetzungen, alternative wege
+
+
+(2) Work middle-out: Start at user goals, go up to strategic level, then down to subfunctions.
+Beschriebe das Herzstück: was wollen die nutzer mit dem System, bishin zur startegischen Perspektive bis zu den Unterfunktionen
+
+
+(3) : Get clear about the scope of the system you are describing.
+Sich den Umfang des Gesamtsystems klar machen.
+
+(4) : Avoid user interface descriptions.
+Vermeide es das Interaface detailiert zu beschrieben.
+
+(5) : Brainstorm the failures and alternative paths.
+Mache dir das Versagen des Projekts und über Alternative Möglichkeiten gedanken.
+
+
+c)
+
+Ein Anwendungsfall umfasst mehrer Szenarien. Ein Anwendungsfall ist durch eine Intention oder ein Ziel eines oder mehrer User charakteriersrt. Ein Szenario beschriebt genau einen solchen Fall.
+
+
+
+
+Aufgabe 4-2
+
+a) Ein Anwendungsfalldiagram ist grafische darstellung eines (oder eines Teil eines) Anwendungsfalls. In einem solchen Diagramm wird das verhalten von nutzern und die Reaktion des Systems beschrieben.
+
+ Ein Anwendungsfalldiagramm hat klare Grenzen. Ein solches Diagramm beschreibt ein Softwaresystem of nicht hinreichend und muss durch weitere Beschreinbungen und Anforderungen ergänzt werden. Auch nimmt es die technische Perspektive nicht wirklich in den fokus. Es konzentriert sich mehr auf die Ziele eines soclehn systems (buisness goals), als auf die technischen ziele.
+
+b) Akteure werden als „Strichmännchen“ dargestellt, welche sowohl Personen wie Kunden oder Administratoren als auch ein System darstellen können. Dieses Symbol reüpräsnetiert einen bestimmten Benutzer des Softwaresystems.
+
+

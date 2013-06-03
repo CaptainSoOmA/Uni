@@ -1,0 +1,65 @@
+\section*{Aufgabe 2}
+
+
+\subsection*{ a) }
+
+Beweisen Sie, dass der Algorithmus von Dekker gegenseitigen Ausschluss garantiert.
+\\
+\\
+Der im Buch gegebene Algorithmus:
+
+\begin{mylisting}
+\begin{tabbing}
+
+func \=Lock(p uint) \{ // p < 2 \\
+\>	interested[p] = true \\
+\>	for \= interested[1-p] \{ \\
+\>	\>	if \= favoured == 1-p \{ \\
+\>	\>	\>	interested[p] = false \\
+\>	\>	\>	for favoured == 1-p \{ Null() \} \\
+\>	\>	\>	interested[p] = true \\
+\>	\>	\} \\
+\>	\} \\
+\} \\
+\\
+func Unlock(p uint) \{ // p < 2 \\
+\>	favoured = 1-p \\
+\>	interested[p] = false \\
+\} \\
+\end{tabbing} 
+\end{mylisting} 
+
+Analog zum Beweis im Buch wird eine Notation für die Variablen verwendet.
+
+\begin{itemize}
+	\item[] $ i_{p}$ :  intrested[p] 
+	\item[] $ f_{p}$ :  favoured[p]  
+	\item[] $ p , i_{p} , f_{p} \in \{ 0,1 \} $
+\end{itemize} 
+
+Außerdem werden einige verscheidene Zustände Unterscheiden:
+
+\begin{enumerate}
+	\item Ein Prozess hat sein Interesse noch nicht Signalisiert, also weder $ i_{p} = 0$ 
+	\item Ein Prozess befindet sich in der ersten schleife, also $ i_{0} = i_{1} = 1$
+	\item Ein Prozess befindet sich im kritischen Abschnitt
+\end{enumerate}
+
+\paragraph{Beweis des gegnseitigen Ausschlusses :} Um den Gegenseitigen Auschluss zu garantieren dürfen in keiner Situation (egal wie / wer und wann) beide Prozesse im kritischen abschnitt sein. Ich agumentiere hier so, dass ich Prozzess 1 in einen zustand versetzte und zeige, dass der andere Prozess nicht in den kritischen Abschnitt gelangen kann. In die andere Richtung müssen nur die Indezes getauscht werden.
+
+
+\paragraph{ Annahme: P1 ist in kritischen Abschnitt.} Somit folgt sofort: $ i_{1} = 1$. Ist der Prozess P0 in 1. so setzt er $ i_{0} = 1$ und gelangt in die schleife. Ist $ f_{1} = 0$ so bleibt er in der Schleife gefangen bis $ i_{1} = 0$ (hier gilt die Invariante $ i_{0} \land \neg i_{1}  \land f_{0}$ , damit der Prozess 1 in den kritischen Abschnitt eintreten kann). Falls $ f_{1} = 1$ so bleibt P1 in der zweiten Schleife hängen bis $ f_{1} = 1$.
+
+\paragraph{ Annahme: P1 ist eintrittswillig und favorisiert.} Es gilt $ i_{0} = i_{1} = 1$ und $ f_{1} = 1$. Beide Prozesse erreichen die erste Schleife. Hier folgt für P0 $ i_{0} = 0$ und abwarten auf $ f_{1} = 0$. Somit ist der Weg für P1 frei, der als einziger Prozess in der kritischen Sektion ist  
+
+
+\paragraph{ Annahme: P1 ist eintrittswillig und nicht favorisiert.} Hier folgt das gleiche wie im vorherigen Fall, nur mit umgedrehten Indices.
+
+
+\subsection*{ b) } Begründen sie das der gegebene Algorithmus die weiteren Anforderungen an Sperrsynchronisation erfüllt.
+
+\paragraph{ Behinderungsfreiheit : } Wenn nur ein Prozess am eintritt interessiert ist, so spielt das favourt Bit keine Rolle. Er kann direkt eintreten, da $ i_{p - 1} = 0$ ist. Die Implementation ist also behinderungsfrei.
+
+\paragraph{ Verklemmungsfreiheit : } Der Algorithmus kann nicht verklemmen. Wenn beide Prozesse in den kritischen Abschnitt eintreten wollen, so kann durch die Favorisierung nur einer der Beiden in den gesperrten Bereich eintreten. Durch Unlock wird dieses Bit immer geflippt wenn ein Prozess aus dem kritischen Abschnitt austritt.
+
+\paragraph{ Fairness : } Das Verfahren ist fair. Nach jedem Austritt favourisiert ein Prozess den anderen und lässt ihm beim nächsten Durchlauf den Vortritt. Im Fall von beidseitigem konstanten Interesse, können also beide Prozesse gleich oft auf den kritischen Abschnitt zugreifen.

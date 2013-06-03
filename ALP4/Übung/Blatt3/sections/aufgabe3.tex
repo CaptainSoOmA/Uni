@@ -1,0 +1,62 @@
+\subsection*{Aufgabe 3}
+
+Beweisen sie, das der folgende Algorithmus gegenseitigen Auschluss sichert ist:
+
+Das abstrakte Datenmodell:
+\begin{tabbing}
+type \= Imp struct \{ \\
+\>	val int \\
+\>	cs, mutex sync.Mutex \\
+\} \\
+\end{tabbing}
+
+Die Implementierung
+
+\begin{tabbing}
+func \= New (n uint32) *Imp \{ \\
+\>	x:= new (Imp) \\
+\>	x.val = n \\
+\>	if \= x.val == 0 \{ \\
+\>	\>	x.cs.Lock() \\ 
+\>	\} \\
+\>	return x \\
+\} \\
+\\
+func \= (x *Imp) P() \{ \\
+\>	x.cs.Lock() \\
+\>	x.mutex.Lock() \\
+\>	x.val-- \\
+\>	if \= x.val \textgreater 0 \{ \\
+\>	\>	x.cs.Unlock() \\
+\>	\} \\
+\>	x.mutex.Unlock() \\
+\} \\
+\\
+func (x *Imp) V() \{ \\
+\>	x.mutex.Lock() \\
+\>	x.val++ \\
+\>	if \= x.val == 1 \{ \\
+\>	\>	x.cs.Unlock() \\
+\>	\} \\
+\>	x.mutex.Unlock() \\
+\} \\
+\end{tabbing}
+
+
+\paragraph*{ Gegenseitigen Ausschluss : }
+
+Der hier vorgestellte Implementierung erfüllt den gegenseitigen Ausschluss. Dies soll im folgenden gezeigt werden. Der hauptsächliche Fokus liegt hierbei auf den beiden mutexen: cs und mutes. Diese sichern zu, dass die Variable n geschützt ist, sowie implementieren sie das Blockieren des Semaphores.
+
+Bei der Untersuchung der Auschlusseigenschaft konzentrieren wir uns auf 2 Prozesse (P1 und P2). Sollte es mehrere geben, kann dies mit rückführung auf alle Fälle die hier behandelt werden einfach gezeigtwerde, dass der Ausschluss immer noch gilt. Außerdem vereinbaren wir das n=1 bei der Initialisierung. Auch hier gilt das höhere Werte für n am Ausschlussverhalten nichts ändern. Unterscheiden wir folgenden Szenarien:
+
+\begin{enumerate}
+\item P1 im kritischen Abschnitt (nach P() ) und P2 ruft P() auf.
+\item P1 und P2 rufen zeitgleich P() auf 
+\end{enumerate}
+
+\paragraph*{Fall 1:}
+ Es glit:  cs ist Locked und mutex ist Unlocked, n ist auf 0. Der Prozess 2 durchläuft das Aufrufprotokoll und bleibt bei dem sperren von cs hängen. Er kann seinen eintritt erst beenden, wenn vorher V() aufgerufen wurden. Soweit v erhält er sich spezifisch dem Protokoll. Alle anderen Prozess bleiben an der gleichen stelle hängen
+
+\paragraph*{Fall 2:}
+
+Hier kommt es nur darauf an welcher der beiden Prozesse den mutext cs als erstes Sperren darf. Selbst wenn beie Prozesse gleichzeitig durch diesen Mutex kommen (im fall n \textgreater 1), so kann imer nur einer der Prozesse auf n schrieben, da dieser durch einen weiteren Mutext mutex geschütrzt ist.

@@ -1,0 +1,84 @@
+Aufgabe 1-1
+
+a)
+
+
+
+Die Ziele sind nicht alle gleichmäßig erreichbar. Ein Projekt mit sehr geringen Zeitaufwand kann wahrscheinlich keinen großen Umfang erreichen und sicherlich auch keine sehr hohe Qualität erlangen. Wenn man eines der Ziele zu optimieren sucht, dann wird man fast zwangsläufig in den anderen Defizite hinnehmen müssen. Steigert man die Qualität einer Software so ist dies mit einem mehr an Kosten un Zeitaufwand zu zahlen.
+
+b)
+
+
+Kosten: kleine Webprojekte mit geringem Umfang
+
+Zeitaufwand: Software in Konkurenzsituationen / Update intensive Software
+
+Qualität: Sicherheitsrelevante Software (z.B. Steuerungssoftware)
+
+Umfang: Bibliotheken für Programmiersprachen
+
+
+c)
+
+Man kann durch den Einsatz von mehr Geld mehr Personal anwerben und somit den Zeitaufwand des Projektes verkleinern. Somit sind Zeitaufwand un Kosten miteinander verknüpft und können in einander umgewandelt werden.
+
+
+d)
+
+Durch niedrigen Zeitaufwand entstehen höhere Kosten und umgekehrt. Die beriden Größen stehen in einem umgekehr-proportionalen Verhältnis zueinander. Man kann durch mehr Geld immer mehr Entwickler an einem Projekt beteiligen und somit den Zeitaufwand reduzieren. Allerdings kommt es auch hier zu einem kommunikativen Overhead. 2 Entwickler müssen sich abstimmen und kommunizieren. Dies ist ein insgesamt mehr an aufwand, das verhindert das sich die Größen eins zu eins ineinander übertragen lassen.
+
+Bsp. Softwareprojekt von einer größe von ca. einem Entwickler Jahr
+
+bei 2 Entwicklern ==> ca. ein halbes Jahr Zeitaufwant
+
+[ zwei Entwickler können wahrscheinlich sehr effizient die Aufgaben untereinander aufteielen, so dass sich die benötigte Zeit halbiert]
+
+bei 5 Entwicklern ==> ca. 3 - 5 Monate je nach Projekt
+
+[ fünf entwickler können das Projekt wahrscheinlich in viele kleinere Teile zerlegen und so je nach Projekt einen höheren Speedup erreichen]
+
+bei 150 Entwicklern ==> ca. 2 - 5 Monate je nach Projekt
+
+[ Hier kommen einige Fragen auf: wie gut ist das Projekt verlegbar, wiesher ist man auf zeitaufwendiges Testen angewiesen, wie schwierig ist die Architektur, ect. Insgesammt kämpft ein solches Projekt mit einem gewaltigen Overhead]
+
+
+
+
+Aufgabe 2 -1
+
+1. Definitionen:
+
+Klasse: gekapselte Beschreibung (Bauplan) für ein Objekt. Beschrieben durch typ, Atrribute und Methoden
+
+Vererbung: erweitern einer Klasse, indem man der Kind Klasse neue Eigenschafetn gibt
+
+Attribut: Feld eines Objekts, das einen Wert enthällt
+
+Operation: Methode die den Zustand eines Objekts ändert
+
+Methode: Funktion einer Klasse
+
+Exemplar : konkrete Ausprägung eines Objekts
+
+Objekt: wird beschrieben durch eine Klasse und erzeugt ein Exemplar
+
+Bibliothek: Kapslung von bestimmen Funktionen (meist Objekten)
+
+Spezifikation: Anforderungen an eine Klasse oder Funktion
+
+Implementierung: Realisierung der Spezifikation
+
+Verifikation: mathematischer Beweis der Korrektheit einer Komonente
+
+Geheimnisprinzip: bei der Implementaion einer Spezifikation sind die inneren Abläufe irrelevant. Was zählt sind nur die Schnittstellen nach außen.
+
+
+2. Folgende Aktivitäten sind nicht abgedeckt: Anforderungsermittlung, Entwurf, Inbetriebnahme, Management 
+
+Bsp 1: Anforderungsermittlung: hier geht es um die Ermittlung dessen was gebaut werden soll. Die genannte Begriffe spielen hier keine Rolle.
+
+Bsp 2: Inbetriebnahme: beim Nutzen von Software ist es uniteressant ob diese durch Vererbung implementiert wurde.
+
+3. Eine Klasse beschriebt einen konkreten Aufgabe von Objekten. Eine Menge von Objekten sagt ert einmal nichts über deren Funktionen und Schnittstellen aus. Bei einer Klasse ist klar, dass sie ein bestimmtest set von Funktionen auch wirkloch hat.
+
+

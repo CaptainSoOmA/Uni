@@ -1,0 +1,19 @@
+\subsection*{Aufgabe 1}
+
+\subsection*{a)}
+\textit{ Geben Sie eine kontextfreie Grammatik für die Sprache $ \{w \in \{a,b, ..,z \}^{*} \mid w = w^{r} \}$ }
+\\[1cm]
+
+Diese Grammatik lässt sich durch zwei Produktionen sehr einfach darstellen:
+
+\begin{align*}
+	S & \to Z S Z \mid Z \\
+	Z & \to a \mid b \mid ... \mid z \mid \varepsilon 
+\end{align*}
+
+
+Hiermit sind alle Wörter produzierbar die der geforderten Eigenschaft entsprechen. Alle Annagramme haben gespiegelt, an der Mitte, die gleichen Buchstaben. Der einzige Buchstabe der dieser Regel nicht unterliegt ist der Buchstabe in der Mitte. Bei einer Graden zahl an Buchstaben ist dieser das leere Wort $\varepsilon$.
+
+\subsection*{b)}
+
+Die gegebenen Produktionen erzeugen folgende Sprache: Die Sprache besteht zum einen aus beliebeigen folgen von a's und b's, wobei sich der erste und der letzte Buchstabe unterscheiden müssen. Diese Wörter können noch umrahmt sein von einer Reihe a's und b'. Diese sind dann an der Mitte des Wortes gespiegelt und in gleicher Reihenfolge.

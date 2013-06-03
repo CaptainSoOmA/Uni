@@ -1,0 +1,29 @@
+\subsection*{Aufgabe 4}
+
+
+\paragraph*{a)}
+
+Ein Semaphore der sich durch eine FIFO Queue realisiert hat folgendes Interface.
+
+type Semaphore struct {
+val int
+q Queue
+}
+
+Der Wert Wert val ist der entsprechende Wert mit dem der Semaphore initialisiert wird und die Menge der freien Ressurcen verwaltet werden. Die Queue q ist die Warteschlange mit der alle blockierten Prozesse hinterlegt werden. Für die Funktionen gilt folgendes Verhaletn:
+
+\paragraph*{P()}
+Das verhalten von P hängt davon ab welchen wert die Varialbe val hat. Die wird in jedem Fall inkrementiert (in machen implementationen wird sie auch um eine übergebenen Wert inkrementiert). Dannch wird überprüft ob der wert nun kleiner oder gleich 0 ist. Falls dies der Fall ist, so wird er Prozess vom Betriebsystem blockiert und in die FIFo Schlange hinten hineingeworfen.
+
+\paragraph*{V()}
+Hier wird val zunnächst erhöht. Ist sein Wert dannach immer noch kleiner oder gleich 0. So sind noch andere Prozesse in der Warteschlange. Nun wird der erste Prozesse in der Warteschlange deblockiert und auf rechenbereit gesetzt. (oder eine äquivalente Zahl an Prozessen.)
+
+
+\paragraph*{b)}
+
+Das Konvoi Probelm kann dardurch behoben werde, dass nicht nach der FIFO Reihenfolge deblockiert wird, sondern in der Deblokade der Prozesse ein stochastisches element eingefügt wird. So kann z.B einfach ein willkürlicher Prozess bei einem aufruf von V() auf bereit gesetzt werden.
+
+\paragraph*{c)}
+
+Die ist in Go realisierbar. Die Go Bibliotheken ermöglichen es auf die low-level Systemcalls zuzugreifen und ein Signal wie SIGTSTP zu senden. Dies unterbricht die Ausführung des aktuellen hreads. Allerdings gehen die meisten Vorteile der Sprache die goroutinen verloren. Mit diesen ist so etwas schwieriger zu implementieren, aber hier könnte so etwas mit Channels gemacht werden.
+

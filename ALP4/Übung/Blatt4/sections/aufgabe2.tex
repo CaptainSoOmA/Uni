@@ -1,0 +1,29 @@
+\subsection*{Aufgabe 2}
+
+
+Bei dieser Aufgabe soll das Problem der speisenden Philosophen mithilfe des universellen kritischen Abschnitts gelöst werden. 
+\\
+
+\begin{tabular}{ c | c | c | c }
+	Prozess  & Bedingung &  \textless IN \textgreater & \textless OUT \textgreater \\
+	\hline
+	p		&   
+	\parbox[t]{3in}{
+		state[left(p)] != dining \&\& 
+		\par state[rigth(p)]  != dining \&\&  
+		\par ( state[left(p)] != starving \&\& 
+		\par state[rigth(p)] != starving)
+		\strut
+	}  & 
+	state[p] == dining		&	
+	\parbox[t]{3in}{
+		state[p] == satisfied; 
+		\par state[rigth(p)]  == starving;  
+		\par state[left(p)]  == starving;  
+		\strut
+	}\\
+
+\end{tabular}
+
+
+Somit ist es möglich, dass die anderen Philosophen den vorzug erhalten, nachdem man selber gespeist hat.

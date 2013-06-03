@@ -1,0 +1,15 @@
+\subsection*{Aufgabe 2}
+
+\paragraph*{a)}
+
+Ein Prozess kan nicht auf zwei Semaphore gleichzeitig warten. Wartet ein Prozess auf einen Semaphore so wird sein Prozesszustand auf blockiert gesetzt. Somit kann er während er auf den ersten Semaphore wartet nich auf einen anderen Semaphore warten. 
+Ein Prozess kann darauf warten, dass er von einem Semaphore aufgewacht wird und dannach auf einen weiteren Semaphore warten. Allerdings kann ernicht auf zwei verschiedenen Semaphore warten und somit keine zwei disjunkten Eintrittsbedingungen, die über Semaphore realisiert sind, haben.
+
+\paragraph*{b)}
+
+Solange ein Prozess auf das Signal eienes Semaphores wartet ist er blockiert. Deshalb kann er aus sicht des Betriebsystems nicht rechenbereit sein. Sobald er dei Methode P() aufgerufen hat ist er entweder in der kritischen sektion oder blockiert. Das heißt aus der Sicht des Betriebsystems ist ein wartender Prozess nicht rechenbereit.
+
+
+\paragraph*{c)}
+
+Ein solcher Ansatz ist wünschenswert. Es sind situationen denkbar in denen verschiedene ähnliche Ressurcen für eine Aufgabe zur verfügung stehen und der aufrufende Prozess das schnellstmögliche dieser Ressurcen aufrufen will. Hätten alle dieser Ressurcen nur einen Semaphore, so könnte man nicht auf das schnellste freiwerden warten sondern müsste man müsste sich eine einzige Ressurce aussuchen und auf diese warten. Das warten auf verschiedene Signale kann also durchaus sinnvoll sein! Allerdings sollte eine solche Implementierung dem aufrufer nicht nur aufwecken sondern ebenfalls mitteilen welches Signal ihn grade aufgeweckt hat. Eine solche Implementierung könnte allerdings auch Probleme mit sich brinegn. So bleiben Fragen der Priorisierung und der Gleichzeitigkeit beim eintritt von mehr als 2 Signalen. Hier ist es schwierig sich ein defi niertes verhalten zu überlegen, dass Korrektheit aufweist.

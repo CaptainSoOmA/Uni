@@ -1,0 +1,46 @@
+\subsection*{Aufgabe 2}
+
+
+\subsection*{a)}
+\textit{ 
+Welche Sprache wird von der Grammatik $S \to (S) \mid SS \mid \varepsilon$ erzeugt? 
+} \\[0.5cm]
+
+Die Sprache die beliebig viele Klammern umeinader enthällt und diese in belibiger Reihnfolge wiederholen kann. So sind z.B ()() oder (())() Worte der Sprache. Mann könnte die Sprache Formal ungefähr so beschreiben: \\
+$ \{ [(^{n} )^{n}]^{*} \}$ wobei n für jede Wiederholung varieren darf.
+
+\subsection*{}
+\textit{ Ist die Grammatik eindeutig? } \\[0.5cm]
+
+Die  Sprache ist nicht eindeutig. Es gibt für jedes Wort beliebig viele Ableitungsbäume. Diese können sich durch ein SS immer tiefer verzweigen, wobein das eine S auf ein $ \varepsilon $ geht.\\
+Zum Beispiel kann () durch 
+\begin{align*}  S & \to (S_{1})  
+\intertext{mit} 
+S_{1} &= \varepsilon 
+\intertext{oder durch} 
+  S & \to S_{1}S_{2} 
+\intertext{mit:}
+S_{1} &= () \\
+S_{2} &= \varepsilon \\
+  \end{align*} 
+ 
+
+\subsection*{b)}
+\textit{
+Zeigen Sie, dass $ S \to (S)S \mid \varepsilon $ diese Sprache eindeutig erzeugt.
+} \\[0.5cm]
+
+Es ist leicht einsichtig, dass diese Produktion die gleiche Sprache erzeugt. Das erste $(S)$ ist einfach nur der ersatz für SS und die Produktion $S \to (S)$. \\
+Es bleibt zu zeigen das diese Sprache eindeutig ist:\\
+Annahme: L nicht eindeutig.
+\begin{align*}
+\implies \exists w_{1}, w_{2} \in L 
+	\intertext{mit} 
+w_{1} &= w_{2} \\
+w_{1} &= a_{11}a_{12}a_{13}...a_{1n} \\
+w_{2} &= a_{21}a_{22}a_{23}...a_{2n}
+	\intertext{es gilt nach Vor.} 
+a_{1i} = a_{2i} \; \forall i \in \{1, .. ,n\}
+\end{align*}
+
+Es gibt nur eine Produktion die Klammer erzuegen kann $S \to (S)$. Alle w müssen durch diese Prodkution erzeugt werden. Somit folgt ein Wiederspruch zur Annahme und die Aussage

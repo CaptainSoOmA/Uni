@@ -1,0 +1,67 @@
+Blatt 2
+
+
+Aufgabe 1
+Vergegenwärtigen Sie sich noch einmal die Aufgaben der Softwaretechnik:
+
+a) Welche sind das? [ b) Womit beschäftigen sie sich jeweils]
+
+Alle beschriebenen Aufgaben sind verknüpft und haben miteinander zu tun. Dennoch kann man das Aufgabenfekd der SWT wie folgt zerlegen (nach dem Doppelpunkt stehen die Antowrten zu Aufgabe b)
+
+	Kosten/Nutzen-Analyse : Helfen zu klären ob Software nützlich sein könnte. Wie groß der Gewinn bei der Anwengung der Software sein Könnte und wie groß die Kosten der Erstellung und des Betreiebens des Softwaresystems. 
+
+ 	
+	Anforderungs-Analyse : Klären was genau zu tun ist. Was soll gebaut werden? Für welches Aufgabenfeld ist das Softwaresystem konzipiert und welche Abläufe betrifft es.
+ 
+ 	Entwurf : Helfen die Konkrete Architektur und Modulzerlegung zu finden. Dieser Teil ist die Vorarbeit für die Implementierung.
+ 
+	Implementierung : Die konkrete Organisation des Softwareschreibens. Hierbei geht es vorallem um das beachten des Entwurfs.
+ 
+	Analytische Qualitätssicherung : Hier werden alle Maßnahmen zusammengefasst, die Aussagen über Qualität und Fehleranfälligkeit einer analytischen Untersuchung ermöglichen.
+
+	Management : Die Koordination und Organisation aller vorher beschriebener Aufgaben.
+
+
+
+Aufgabe 2
+
+Grundiedee:
+Ein Webseite, die dem Ziel dient Notizen (mit deren Verweisen) zu Organisieren. Jede Notiz kann dabei Verweise haben und getaggrd werden. Somit kann man sich mit dem Tool auf eine einfache Art Exzerpte, Notizen und Informationen zu verwalten
+
+- Was ist die Anwendungsdomäne der Software?
+
+	Das Organisieren von Notizen und Informationen.
+
+- Um was für eine Software handelt es sich, wozu wird sie benötigt?
+	• Welchen Arbeitsprozess soll sie unterstützen / verbessern?
+
+		Den Arbeitsprozess des Erfassen von Notizen und Informationen
+
+	• Welche Funktionen soll sie bereitstellen?
+
+		--> Das Aufnehmen von Notizen mit Verweisen (am bseten formatierter Text) 
+		--> systematisches Durchsuchen und Darstellen der Notizen
+		--> Untersctützen verschiedenen Verweise (Literatur, Webseiten, Videos ...)
+		--> bequemes Importieren und Exportieren
+
+	• Im welchem Verhältnis stehen die Kosten zum Nutzen der Software?
+		
+		sehr dynamisches Hochskalieren der Features, somit könenn Kosten dynamisch gesenkt werden.
+		Durch das Ausnutzten von bestehnder Technologie (Webframeworks) können die Kosten reduziert werden.
+		UI ist schwierig.
+
+− Wer sind Ihre Kunden?
+	
+	Wissensarbeiter. Je nach Features Geistewissenschaftler / Naturwissenschaftler oder Ingenieure
+
+− Wer ist die Zielgruppe Ihrer Software?
+
+	Studenten und Wissenschaftler
+
+− Welcher Wissenstand im Umgang mit der Software ist von den Benutzern notwendig bzw. zu erwarten?
+
+	Keine großen Erwartungen (Webseiten sollten bedient werden können)
+
+− Welche Probleme / Widerstände bei der Einführung der Software sind zu erwarten?
+
+	Verschiedene Erwartungen an UI, Verschiedene import Formate, etc....

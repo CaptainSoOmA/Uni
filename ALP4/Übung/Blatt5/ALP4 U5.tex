@@ -1,0 +1,59 @@
+\documentclass[11pt]{scrartcl} %for standart A4: a4paper as option and remove package a4wide (scrartcl is the KOMA-class of article)
+\usepackage{a4wide} %A4 document size with smaller margins
+\usepackage[utf8]{inputenc} %Text Encoding
+\usepackage[ngerman]{babel} %new German orthography
+\usepackage{totpages} %\ref{TotPages} for total page count
+\usepackage{graphicx}
+
+% math packages 
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+
+% Hyperlinks 
+\usepackage{hyperref}
+
+\usepackage{listings}
+
+%------------------------------------------------------------------------------
+\newcommand{\UEBUNGSNR}{5}	
+
+\date{\today}
+\author{Tobias Kranz (414 71 30)\\ Johannes Rohloff ()}
+\title{ALP4 - Nichtsequentielle Programmierung \UEBUNGSNR{}}
+%------------------------------------------------------------------------------
+
+%paragraph handling (e.g. bigger gap between them) 
+\usepackage{parskip}
+
+%header/footer
+\usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancyplain}
+	\lhead{ALP4 - Ü\UEBUNGSNR{}}
+	\chead{Tutor: Julian Fleischer (Mi 14-16)}
+	\rhead{T. Kranz, J. Rohloff}
+	\lfoot{}
+	\cfoot{Seite \thepage\ von \ref{TotPages}}
+	\rfoot{}
+	\renewcommand{\headrulewidth}{0.4pt}
+	\renewcommand{\footrulewidth}{0.4pt}
+\begin{document}
+\maketitle
+\paragraph{Aufgabe 1}
+
+\subparagraph{a)} Prüfen auf Zyklen ist mittels Tiefensuche möglich.
+
+\subparagraph{b)} Die Laufzeit beträgt, wenn der Graph als Adjazensliste gespeichert wird, $\theta$(\#Knoten + \#Kanten) (lineare Laufzeit) bzw. $\theta$(\#Knoten$^2$) (quadratische Laufzeit) sofern er als Adjazensmatrix vorliegt.
+
+\paragraph{Aufgabe 2}  
+
+\subparagraph{a)}\
+
+\lstinputlisting[language=C]{LS-Monitor.c}
+
+\subparagraph{b)}\
+
+\lstinputlisting[language=C]{LS-Monitor.go}
+\end{document}
+
+
+\paragraph{Aufgabe 4}  

@@ -1,0 +1,34 @@
+\section*{Aufgabe 3} Zeigen sie, dass diese Implemtierung für drei Prozesse nicht korrekt ist.
+
+\begin{mylisting}
+\begin{tabbing}
+
+
+func \= Lock (p uint) \{ // p < 3 \\
+\>	interested[p] = true \\
+\>	q, r:= (p + 1) \% 3, (p + 2) \% 3 \\
+\>	favoured = q \\
+\>	for \= interested[q] \&\& favoured == q   interested[r] \&\& favoured == r \{ \\
+\>	\>	Null() \\
+\>	\} \\
+\} \\
+ \\
+
+func Unlock (p uint) \{ // p < 3 \\
+\>	interested[p] = false \\
+\} \\
+
+\end{tabbing}
+\end{mylisting}
+
+
+\paragraph{ Gegenseitigen Ausschluss : } Dies ist nicht gegeben. Ein Gegenbeispiel. Alle drei Prozesse wollen in die kritische Sektion eintreten. P1 setzt $ f = 2 $, allerdings wird er sofort von P0 unterbrochen und somit ist $ f = 1 $. Nun Prüft P1 seine Eintritts Bedingung und tritt ein (P2 hat noch kein interesse bekundet). Im nächsten schritt setzt P3 $ f = 0$. Damit kann auch P0 in den kritischen Bereich einteten. Somit ist kein gegnseitiger Ausschluss gegeben.
+
+
+\paragraph{ Behinderungsfreiheit : } Diese Kriterium erfüllt die Implementierung. Wenn ich alleine zugriefen will sind die anderen beiden Werte von $ i_{p} = 0$. Dies erlaubt es erst gar nicht in die Schleife einzutreten.
+
+
+\paragraph{ Verklemmungsfreiheit : } Durch das Favourisiern wird garantiert, das mindesten einer der 3 Prozesse zum Zug kommt. Somit ist diese Erweiterung Verklemmungsfrei.
+
+\paragraph{ Fairness : } Die Implementierung ist fair. Sie verschiebt das favoured Byte pro durchlauf. Somit wird der Zugriff im Zweifelsfall immer weiter gegeben.\\ 
+Insgesammt folgt somit: kein Gegenseitiger Ausschluss, damit ist die Implementierung nicht korrekt.
