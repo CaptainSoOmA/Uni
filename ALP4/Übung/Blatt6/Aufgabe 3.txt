@@ -1,0 +1,5 @@
+Aufgabe 3
+
+Asynchronen Datenaustausch mit syncronem Datenaustausch erzeugen.
+
+Mithilfe des syncronen Datenaustausches ist es möglich das Verhalten des Asyncronen Datenaustausches nachzubilen. Hierzu erzeugt man sich ein neuen Datenobjekt das den austausch übernimmt. Dieses Datenobjekt hat eine Möglichkeit die eingehenden Daten zu speichern und in gleicher Reihenfolge wieder auszugeben (in der Praxis ist hier natürlich der speicher beschränkt, dies gilt aber auch für jede Implementierung eiens asynchronen Austausch). Schickt man in diesen Chanel eine Nachricht so wird sie gespeichert. Dies kann immer geshehen, da das Datenobjekt immer drauf wartet Daten zu erhalten. Werden Daten abgefragt so werden diese, falls vorhanden, über einen Kanal weitergereicht. Sind keine Daten vorhanden, so blockiert der Kanal. Über ein solches Datenobjekt kann mit sycronen Känelen asyncroner Datenaustausch erstellt werden.

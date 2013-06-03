@@ -1,0 +1,64 @@
+Aufgabe 7-1
+
+1) Information hiding
+
+Das Prinzip des Information hiding bezeichnet die Praxis, des Verbegens von Daten gegnüber einem Zugrif von außen. Der direkte Zugriff auf die Daten einer Datenstruktur (bzw. eines Objekts) wird ersetzt durch einen Definierten Zugruff durch Schnittstellen.
+
+
+2) Prinzipien und Heuristiken
+
+	- Datenaustausch und Aufrufe finden nur durch Schnittstellen statt
+	- Datenstrukturen die über eine Schnittstelle auf ein anders Datenobjekt zugreiefn sollten so wenig wie nötig über den inneren aufbau dieses Objkékts wissen
+	- Deutlich verbesserte Testbarkeit, Stabilität und Änderbarkeit der Software
+
+
+3) "Need to Know" - Prinzip
+
+Das "Need to Know" - Prinzip beschreit die Praxis das der innere Aufbau einer Klasse von außen bei der Entwicklung nicht einsehbar sein sollte. Nur die Spezifikationen der Schnittstellen ist nach außen bekannt.
+
+
+4) Warum ist Information hiding sinnvoll? 
+
+Das Information hiding ist sinnvoll, da es die Internas und die innere Organisation einer Programmeinheit von dem Zugriff entkoppelt. Somit können diese internas beliebig verändert werden, ohne das sich am Zugriff auf diese Datenobjekte etwas geändert werden muss. Dies gibt bei der Entwicklung größere Freiheit und lockert die Kopplung auf
+
+
+5) Design by Contract
+
+Desig By Contract bezeichnet das reibungslose Zusammenspiel von Objekten. Dies wird durch einen „Vertrag“ erreicht, der beispielsweise bei der Verwendung einer Methode einzuhalten ist. Dieser besteht aus
+
+    Vorbedingungen : die Zusicherungen, die der Aufrufer einzuhalten hat
+    Nachbedingungen : die Zusicherungen, die der Aufgerufene einhalten wird, sowie den
+    Invarianten : der Gesundheitszustand der Klasse.
+
+Mit diesen erweiterungen der Spezifikationen kann die Zusammenarbeit zwicshen klassen fehlerfreier gestlatet werden.
+
+6) Zusammenhang zwischen OCL, Invariante, Design by Contract, precondition, constraints, postcondition.
+
+OCL ist eine Sprache die Randbedingungen bei der Modellierung von Software beschreibt. Dies ist nötig für das Prinzip des Design bei Contract. Hierzu sind invarianten, precondition, constraints und postcondition nötig. Invarianten sind der Teil, der sich während der Ausführung des Codes nicht ändert. Preconditions müssen vorher erfüllt sein, Postconditions danach. 
+
+
+Aufgabe 7 - 2
+
+1.
+
+a) context Aufgabe inv: punktzahl > 0
+
+Die Punktzahl einer aufgabe müssen größer als 0 sein. (müssten sie nicht eigentlich größergleich sein?)
+
+
+b) context Student inv: loesungen->size() = klausur.aufgaben->size()
+
+Ein Student hat genau so viele Lösunegn wie die Klausur ihm Aufgaben stellt.
+
+c)
+
+context Klausur inv:
+	studenten->forAll (s |
+		s.bestanden = true implies
+		s.lösungen->exists (l |
+			l.punkte > 0 and
+			l.aufgabe.klausur = self))
+
+
+
+2.
