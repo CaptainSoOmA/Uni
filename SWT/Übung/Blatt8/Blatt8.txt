@@ -51,5 +51,30 @@ Brücke: Auch die Brücke ist ein Strukturmuster und dient zur Trennung der Impl
 
 Aufgeb 8 - 2
 
-Überlegen Sie sich, welches der in der Vorlesung vorgestellten Entwurfsmuster (außer dem Singleton) Sie in Ihrer zu entwickelnden Software sinnvoll einsetzen können.
+1. Überlegen Sie sich, welches der in der Vorlesung vorgestellten Entwurfsmuster (außer dem Singleton) Sie in Ihrer zu entwickelnden Software sinnvoll einsetzen können.
 
+Das Fassaden Pattern könnte genutzt werden um den Zugriff auf die einzelnen Cocktail Rezepte zu abstrahieren. .  
+
+
+
+
+2.Stellen Sie die Charakteristika des gewählten Entwurfsmusters heraus und begründen Sie, warum und wofür das Muster in Ihrem Kontext geeignet ist.
+
+Die Fassade abstrahiert den Zugriff auf ein Subsystem, in diesem Fall die Datenquellen. Die Rezpte können aus der Online Datenbank Stammen die ebenfalls offline Repliziert werden könnte. Außerdem könnten in späteren Versionen auch noch aus anderen Quellen (www-suche, ect) Rezepte hinzugefügt werden. Dies ermöglicht der App eine größere Flexibilität. Hierfür ist das Pattern sinnvoll.
+
+
+
+
+
+3. Stellen Sie das Entwurfsmuster in UML Notation dar.
+
+file: fassade.png
+
+4. Übertragen Sie die UML Notation des Entwurfsmusters in Ihren Kontext und stellen dieses ebenfalls als UML Diagramm dar.
+
+file: DB.png
+
+5. Implementieren Sie (in Java oder Pseudocode) in Ansätzen die Verwendung des Entwurfsmusters in Ihrem Kontext (notwendige Interfaces, Klassen, etc. mit jeweils relevanten Codestellen).
+
+
+Eine kleine Version dieses Patterns findet sich in Fassade.zip.
