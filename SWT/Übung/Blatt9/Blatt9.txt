@@ -1,0 +1,47 @@
+Aufgabe 9-1
+
+1. Erklären Sie den Unterschied zwischen Verifizieren und Validieren.
+
+Verfikation ist eine Prozess, der für ein Stück Software sicherstellt, das es sich gemäß der Spezifikation dieser Software verhält. Im Gegensatz dazu nutzt die Validierung Dokumentation für Plausibilisierung, dass ein System die Anforderungen in der Praxis erfüllt. Verfiktaion stütützt sich dabei auf mathematische Verfahren, während die Validierung sich mit Formen von Qualitäsicherung bedient.
+
+
+2. Woraus besteht ein Testfall? Wann nennt man einen Testfall erfolgreich?
+
+Ein Testfall bestehet aus einem Tupel von Testeingabe und Testausgabe. Dei Testeingabe ist der Zustand der Software und die Eingabe, die Testausgabe ist das Verhalten der Software. Somit kann ein erwartetes Verhalten beschrieben werden.
+Wenn eine Abweichung vom erwarteten Verhalten auftritt. Diese Deckt einen Defekt in der Software auf und führt somit zum Erfolg.
+
+
+3. Wie hängen Versagen, Fehler und Defekt zusammen?
+
+Versagen ist ein falschens Verhalten des Programms (genäß der Spezifikation oder Erwartungen). Dieses kann beobachtet oder überprüft werden. Ein (innerer) Defekt führt zu eienm Versagen. Ein oder mehrere Defekte lönnen dieses falsche Verhalten hervorrufen. Verantwortlich hierfür ist ein Fehler, ein Falschtun oder ein Versäumnis der Software.
+
+
+4. Erklären Sie jeweils die Gemeinsamkeiten und Unterschiede zwischen
+	a. Strukturtest und Durchsicht
+		Ein Strukturtest soll die Impelemntierung einer Software testen. Dies ist sehr schwierig. Er ist das Äquivalent zu einder Durchsicht des Quelltextes. Ein Stresstest kann hier sehr nützlich sein.
+
+	b. Lasttest und Stresstest
+		Diese beiden Testtypen unterscheiden sich vorallem in der Intensität. Ein Lasttetst will nur das Funktionierun unter "normalen" Bedingungen überprüfen. Ein Stresstest nimmt hier auch massenhadte und unsinnige Eingaben hinzu. Er überprüft wie schwierig es ist das System insgesammt am funktionieren zu hindern.
+
+
+	c. Testen und „Debugging“
+		Testen ist das überprüfen auf Systemversagen. Debugging ist das Beheben dieser Fehler.
+	
+	d. Funktionstest und Akzeptanztest
+		Ein Funktionstest überprüft ein bestimmten Teilbereich auf seinen koherenz zur Spezifikation. Ein Akzeptanztest prüft ob die Benutzer einers Software diese Funktionalität überhaupt adequat nutzten können. Es handelt sich hier also um einen innen- und eine außen- Perspektive.
+
+	e. Top-Down-Testen und Bottom-up-Testen
+		Ein Bottom-up-Testen testet das Verhalten einzelner Komponenten. ein Top-Down-Testen testet das verhalten eines gesmat Systems.
+
+
+
+
+
+Aufgabe 9-3
+
+Eine der „goldenen“ Regeln im Bereich der Softwareentwicklung heißt „Ein Programmierer sollte nicht seinen eigenen Code testen“. Diskutieren Sie den Sinn dieser Regel.
+
+
+Diese Regel versucht das Problem zu reflektieren, das beim lösen komplizierter Software Probleme implizite Annahmen gemacht werden. Schreibt ein Programmierer seine Softwaretest selber so besteht die Gefahr, dass er diese Annahmen auch in den Testentwurf einbringt und so Fehler in der Software nicht findet. Jemand der "nur" einen Testfall schreibt unterliegt dieser "Blindheit" nicht. Somit es sehr sinnvoll, sofern möglich das Schreiben von Test und Funktionalität personell zu trennen.
+Weiterhin erzwingt einen solche Trennung eine genauere Spezifikation und konkretere Beschreibung der gewünschten Funktionalität. Sonst könnte die Person die nur den Test schreiben soll dies gar nicht tun. Auch die Architektonischen Spezifikation müssen so besser dokumentiert werden. 
+Dies alles steigert die Qualität eines Softwareprodukts.

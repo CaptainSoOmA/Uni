@@ -1,0 +1,48 @@
+Aufgabe 5
+
+a) 
+
+Der Im Buch gegeben Code sieht wie folgt aus:
+
+TEXT TestAndSet(SB),7,$0
+	MOVL valptr+0(FP), BP 	// BP = &b
+	MOVL $1, AX				// AX = 1
+	LOCK					// Bus sperren 
+	XCHGL AX, 0(BP)			// AX = *b || *b =1 (=true)
+	MOVL AX, ret+4(FP)		// AX ist Rückgabewert
+	RET
+
+
+Dieser soll nun Zeile für Zeile erläutert werden:
+
+1. Mit dieser Zeiel wird die Unterfunktion benannt, auf den Wert TestAndSet. Der Wert in der Klammer ist der Stack Pointer. Dieser verweist auf die Stelle an der die Testvariable liegt. Das erste Argument legt dabei die Länge der Unterfunktion fest. 
+2. Hier wird der BasPointer Auf den wert des Aktuellen Stacks gestzt. Dies ist Notwendig um den Aktuellen wert der Testvariable zu bekommen.
+3. Setzt den Wert des Registers AX auf 1. ( AX fasst dabei ein long, wegen MOVL)
+4. Hier wird der Bus gesperrt. Dies ist nötig, damit der nächste aufruf (das eigentliche Austauschen) atomar geschehen kann.
+5. Hier wird die Testvariable und der Wert 1 (im Regiszer AX) gegeneinander getauscht. Somit liegt in AX der Wert vor dem schreiben und auf dem Stack liegt eine 1. Diese Befehl kann atomar ausgeführt werden wegen des Locks.
+6. Hier wird als Rückgabe der wert des Registers AX an die oberste Stelle des Stacks geschrieben
+7. Die Funktion ist bendet und es wird zurückgesprunegn.
+
+Somit erfüllt diese Implementation die Spezifikationen der TestAndSet Funktion. 
+
+b) 
+
+XADD ist eine Instruktion des x86 Befehlsatzes. Sie tauscht die beiden Operanden und vertauscht dann schreibt sie in den ersten Operanden die Summe der beiden Operanden. Mit dem Lock Befehl kann sie atomar ausgeführt werden. Somit kann mit diesem Befehl eine FetchAndAdd Operation atomar realisiert werden.
+
+// Definition des Buches für die FetchAndAdd Funktion
+// inertn realisiert mit XADD
+FetchAndAdd(k,n) = AddUint32(k,n) - n 
+
+var interested uint 	// Wert für die aktuelle Warteschlange
+var turn uint 			// wert in der Wartschleife des Aktuellen Prozesses
+
+func Lock() {
+	// "zieht" die nächst höhere Wartenummer und wartet bis er an der Tür ist
+	myTurn = FetchAndAdd(*interested,1)
+	for myTurn != turn {Null()}
+}
+
+func Unlock(){
+	// beim Austritt die den aktuellen Prozess erhöhen
+	FetchAndAdd(*turn,1)
+}
