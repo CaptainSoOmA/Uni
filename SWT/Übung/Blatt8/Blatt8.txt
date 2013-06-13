@@ -51,5 +51,7 @@ Brücke: Auch die Brücke ist ein Strukturmuster und dient zur Trennung der Impl
 
 Aufgeb 8 - 2
 
-Überlegen Sie sich, welches der in der Vorlesung vorgestellten Entwurfsmuster (außer dem Singleton) Sie in Ihrer zu entwickelnden Software sinnvoll einsetzen können.
+1. Überlegen Sie sich, welches der in der Vorlesung vorgestellten Entwurfsmuster (außer dem Singleton Sie in Ihrer zu entwickelnden Software sinnvoll einsetzen können.
+
+
 
