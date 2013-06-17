@@ -1,0 +1,58 @@
+Aufgabe 10 - 1 (Durchsichten)
+
+1. Gegen welche der dort aufgeführten Prüfpunkte (checks) verstoßen Sie selbst gelegentlich bei Ihrer Programmierarbeit?
+
+Gegen folgende Punkte habe ich schon verstoßen und halte es für möglich, dass ich trotz des Versuches nicht gegen sie zu verstoßen wieder gegen sie verstoßen werde:
+
+	2. Für jeden Ausdruck mit mehr als einem Operator: Sind die Annahmen über die Ausführungsreihenfolge korrekt?
+
+	3. Ist „Division by Zero“ möglich?
+
+	13. Müssen Objekte mit equals() oder direkt mit == verglichen werden?
+
+	14. Kann eine Typanpassung (casting) fehlschlagen?
+
+	16. Reagiert der Aufrufer einer Methode auf alle möglichen Werte, die zurückgegeben werden können, inkl. Ausnahmen (Exceptions)?
+
+	18. Kann ein Stack-Overflow bei rekursiven Funktionen auftreten?
+
+
+
+
+2. Nennen Sie mindestens einen Punkt, der nicht automatisiert geprüft werden kann.
+
+	- Multithreading ist immer sehr schwierig zu testen. Für einfache Programme ist es hier noch möglich, aber im allgemeinen ist es unmöglich durch Test hier zu Prüfen.
+
+	- Punkt 5 (Geht man fälschlicherweise davon aus, dass Fließkomma-Arithmetik genau ist?). 
+	Dies kann für eine menge gewählter test sogar gelten.
+
+	- 16. (Reagiert der Aufrufer einer Methode auf alle möglichen Werte, die zurückgegeben werden können, inkl.Ausnahmen (Exceptions)?)
+	Oft werden diese Randbedingung nicht mit agbeprüft.
+
+
+
+3. Nennen Sie mindestens einen Punkt, der Defekte aufdeckt, deren potenziellen Auswirkungen (= Versagensfälle) durch Testen schwer zu entdecken sind.
+
+
+	 24. Wird ein Objekt von einem Thread freigegeben (auf null gesetzt) und von einem anderen zugegriffen?
+
+	 Ein solcher Defekt, aknn sehr schwer zu Debuggen sein und kann im laufenden Btreieb kaum festgestellt werden. Auch das Testen auf so eienen Defekt ist kaum möglich. Es ist sehr aufwendig und setzt Kenntnis der genauen Struktur der Software vorraus. Dies Verhindert aber auch oft, das soclhe "seltenen" Fälle bedacht werden.
+
+
+4. Welche Vorteile haben Durchsichten im Allgemeinen im Vergleich zu dynamischen Tests?
+
+	Durchsichten teste nicht auf ein bestimmtes erwartetes Verhalten. Somit können auch Bugs in der Software gefunden werde, die in eienem konkreteten Testfall keinen Defekt erteuegen, aber bei der wiederverwendung von Code große problemem generieren können. 
+	Außerdem können bei der Durchsicht auf Faktoren wie lesbarkeit ect. Rücksicht genommen werde, was nicht nur Defekte vermeidet sondern die Wertigkeit des Codes weiter steigert. 
+	Bestimmte sehr komplexe oder seltnene Fälle sind nur schwer mit Tests beschreibar, können aber dei einer Durchsicht auffallen. Software die auf Multithreading setzt ist für soche Bugs besonders anfällig.
+
+
+
+Aufgabe 10 - 2
+
+Das Papier beginnt mit 2 Anmerkungen. Erstens sei, neben der Konstruktion des Korrekten Programms, auch das korrekte (dynamische) Laufzeitverhalten aufgabe eines Programmieres. Zweitens könnten Menschen statische Verhältnisse besser verstehen, als dynamische Prozesse.
+Anschließend beschreibt definiert er "textual index", als einen Programmtext, der nur aus Zuweisunegn oder Bedingungstrukturen (if/ else) besteht. Jede Prozedur bringt ihren eigene textual index mit. Analog kann man bei Schleifenkonstrueken von eienem "dynamischen index" sprechen, da sich die Werte von bestimmten (schleifen-) Variablen bei jedem Durchlauf ändern.
+Hier entfaltet Dijkstar sein Hauptargument: die Werte dieser Variabelen leigen erst zur Laufzeit vor. Beim nutzten des GOTO Befehl ist es notwendig und sehr schwierig ein Set and Koordinaten zu finden die den Programmstatus beschrieben. 
+Das Fazit des Aufsatzes ist: Das GOTO Statment ist zu grob und erzeugt liederlichen Programmtext.
+
+
+Dieser Arguemntation kann ich gut folgen und ich finde sie sehr überzeugend. Das Konzept des Proframm Zustands, das Dijkstar mit dem textual index und dem dynamischen index beschreibt ist eine Wesentliche Idee. Alleine sie macht das verwenden des GOTO Befehls, fast unmögluch.
