@@ -55,4 +55,4 @@ Hier entfaltet Dijkstar sein Hauptargument: die Werte dieser Variabelen leigen e
 Das Fazit des Aufsatzes ist: Das GOTO Statment ist zu grob und erzeugt liederlichen Programmtext.
 
 
-Dieser Arguemntation kann ich gut folgen und ich finde sie sehr überzeugend. Das Konzept des Proframm Zustands, das Dijkstar mit dem textual index und dem dynamischen index beschreibt ist eine Wesentliche Idee. Alleine sie macht das verwenden des GOTO Befehls, fast unmögluch.
+Dieser Arguemntation kann ich gut folgen und ich finde sie sehr überzeugend. Das Konzept des Proframm Zustands, das Dijkstar mit dem textual index und dem dynamischen index beschreibt ist eine Wesentliche Idee. Alleine sie macht das verwenden des GOTO Befehls, fast unmögluch. 
