@@ -1,0 +1,44 @@
+Aufgabe 11 - 1: (Verständnis - und Vertiefungsfragen)
+
+1.Was ist ein Prozess, was ist ein Prozessmodell und was ist ein Prozessmanagement?
+
+Ein Prozess beschreibt die Abläufe in einem Softwareprojekt (entweder descriptiv oder präscriptiv). Ein Prozessmodell ist eine Abstraktion die einen Prozess beschreibt. Das Prozessmanagement kümmert sich um die realisierung und überwachung des Prozesses.
+
+
+2.Ab welcher CMM - Reifestufe wird der Softwareentwicklungsprozess kontinuierlich angepasst und verbessert?
+
+Ab der letzten Stufe (optimizing). Hier verbessert sich ein Prozess durch kontinuierliches Feedback selbst.
+
+
+3.Was ist das Besondere an Total Quality Management (TQM)?
+
+Total Quality Management ist eine Führungsmethode, deren Zile es ist die Qualität aus Kundensicht zu maximieren.
+
+
+4.Was ist der Unterschied zwischen einem evolutionären Prozess und einem inkrementellen Prozess?
+
+Bei einem inkrementellen Prozess muss (zumidest in der Theorie) nichts an den bisher hinzugefüget Komponenten verändert werde. Der evolutionäre Prozess nimmt in Kauf, dass schon bestehende Komponenten verändert werden können.
+
+5.Wozu werden Prototypen gebaut?
+
+Prototypen werden gebaut um kritische Anforderungen eiens Systems besser zu verstehen.
+
+
+6.Welche Besonderheiten hat ein Rational Unified Process (RUP), der wasserfallentartet ist?
+
+In einem solchen Prozes sind alle Unterprozesse sofort vollständig realisiert worde. Desswegen kommt es zu keinen Iterationen.
+
+
+7.Was verdeutlicht die V - Form der Darstellung des V - Modells?
+
+Das zu jeder Planungsphase eine Validierung gehört, die die Umsetzung des Planusschritts überprüft. Dieser findet auf jeder Abstraktionsebene statt.
+
+
+8.Welche Vorgehensweisen verhindern bei agilen Prozessen (im Gegensatz zu  wasserfallartigen Prozessen), dass man am Ende ganz ohne lauffähige Software da steht?
+
+Alle ppar Wochen wird eine benutzbare Version an den Kunden ausgeliefert. Somit ist ein Projektfehlschlag fast unmöglich.
+
+
+9.Warum wird Extreme Programming als besonders diszipliniert bezeichnet?
+
+Die hohe Kommunkikation innerhalb des Teams erfordert Disziplin. Außerdem ist das Vorgehen, bei dem zu jedem modul ein automatisierter Test erzeugt wird, nur mit viel Disziplin umzusetzten.

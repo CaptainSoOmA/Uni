@@ -1,0 +1,29 @@
+package sem
+
+// (c) Christian Maurer   v. 30. Februar 2012 - license see murus.go
+
+import
+  . "runtime"
+type
+  Imp struct {
+           p uint32 // number of processes allowed to use the critical section,
+                    // that shall be protected by the semaphore
+             }
+
+
+func New (n uint) *Imp {
+//
+  return &Imp { uint32(n) }
+}
+
+
+func (x *Imp) P () {
+//
+  Semacquire (&x.p)
+}
+
+
+func (x *Imp) V () {
+//
+  Semrelease (&x.p)
+}

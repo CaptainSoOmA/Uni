@@ -1,0 +1,54 @@
+        Equaler  Clearer  Comparer  Coder  Sorter
+            \\\\    /\       /    /  | |    | ||
+              \\ \/    \   /    /    | |    | ||
+                \\ \    | |   /      | |    | ||
+              /  ||  \  | | /        | |    | ||
+Seeker      /    ||   Object         | |    / ||
+  |        |     ||     |            | |  /   ||
+  |        |     ||     |            | |/    / |
+  |    Collector ||   Editor        / /|   /   |
+  |        |     ||     |         / /  | /     |
+  |        |     ||     |       / /   //       |
+  |    Iterator  ||  Indexer  / /   //         |
+  |        | \ \ ||         / /   //          /
+  |        |   \ ||       / /   //          /
+SeekerIterator   \||    / /   //          /
+  |   |        /  ||  / /   //          /
+  |   |        |  \|/ /   //          /
+  |   |        |  Set   //          /
+  |   |        |      //          /
+  |   |        |    //          /
+  |   |       /   //          /
+  |   |     /   //          /
+  |   |   /   //          /
+  |   Sequence    Persistor
+  |               /   |
+  |             /     |
+PersistentSequence    |
+{ Eq /*Sorter*/ }     |
+                      |
+                      |
+             PersistentIndexedSet { Iterator }
+
+
+PersistentSet { Collector ExGeq Trav Persistor }
+
+Queue
+  |
+PrioQueue
+  |
+BoundedPrioQueue
+
+Stack { Push Pop Top }
+
+Order
+Adder
+Multiplier
+Formatter
+Marker
+Persistor
+Printer
+Realvaluator
+Stringer
+Valuator
+functypes

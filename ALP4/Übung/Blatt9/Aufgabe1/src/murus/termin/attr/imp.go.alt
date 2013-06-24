@@ -1,0 +1,231 @@
+package attr
+
+// (c) Christian Maurer   v. 130526 - license see murus.go
+
+import (
+  . "murus/obj"; "murus/str"
+  "murus/col"; "murus/font"; "murus/scr"; "murus/box"; "murus/pbox"; "murus/errh"
+)
+const (
+  Laenge = 3
+  LaengeHilfetext = 2 + nAttrs * (Laenge + 2)
+)
+type (
+  Imp struct {
+           a byte
+             }
+  Set struct {
+           m [nAttrs]bool
+             }
+)
+var (
+  Text [nAttrs]string = [nAttrs]string { "   ", "aus", "erl", "fin", "geb", "hob",
+                                         "ita", "uni", "kom", "prg", "tec", "woh" }
+  bx, setbx *box.Imp = box.New(), box.New()
+  pbx *pbox.Imp = pbox.New()
+  Hilfetext string
+  cF, cB, cMF, cMB col.Colour = col.LightWhite, col.Green, col.LightWhite, col.Green
+)
+
+
+func New () *Imp {
+//
+  x:= new (Imp)
+  x.a = 0
+  return x
+}
+
+
+func (x *Imp) Empty () bool {
+//
+  return x.a == 0
+}
+
+
+func (x *Imp) Clr () {
+//
+  x.a = 0
+}
+
+
+func (x *Imp) Copy (X Object) {
+//
+  x1, ok:= X.(*Imp)
+  if ! ok { return }
+  x.a = x1.a
+}
+
+
+func (x *Imp) Clone () Object {
+//
+  x1:= New ()
+  x1.a = x.a
+  return x1
+}
+
+
+func (x *Imp) Eq (X Object) bool {
+//
+  x1, ok:= X.(*Imp)
+  if ! ok { return false }
+  return x.a == x1.a
+}
+
+
+func (x *Imp) Less (X Object) bool {
+//
+  x1, ok:= X.(*Imp)
+  if ! ok { return false }
+  return x.a < x1.a
+}
+
+
+func NewSet () *Set {
+//
+  s:= new (Set)
+  return s
+}
+
+
+func (s *Set) EmptySet () bool {
+//
+  for a:= byte(1); a < nAttrs; a++ {
+    if s.m [a] { return false }
+  }
+  return true
+}
+
+
+func (s *Set) ClearSet () {
+//
+  for a:= byte(0); a < nAttrs; a++ {
+    s.m [a] = false
+  }
+}
+
+
+func (s *Set) CopySet (s1 *Set) {
+//
+  for a:= byte(0); a < nAttrs; a++ {
+    s.m [a] = s1.m [a]
+  }
+}
+
+
+func (s *Set) InsertSet (x *Imp) {
+//
+  s.m [x.a] = true
+}
+
+
+func (x *Imp) Mark (ja bool) {
+//
+  if ja {
+    bx.Colours (cMF, cMB)
+  } else {
+    bx.Colours (cF, cB)
+  }
+}
+
+
+func (x *Imp) SetFormat (f Format) {
+//
+  if f == Kurz {
+    bx.Wd (1)
+  } else {
+    bx.Wd (Laenge)
+  }
+}
+
+
+func (x *Imp) SetColours (f, b col.Colour) {
+//
+// dummy
+}
+
+
+func (x *Imp) Write (Z, S uint) {
+//
+  bx.Write (Text [x.a], Z, S)
+}
+
+
+func (x *Imp) SetFont (f font.Font) {
+//
+// dummy
+}
+
+
+func (x *Imp) Print (Z, S uint) {
+//
+  pbx.Print (Text [x.a], Z, S)
+}
+
+
+func (s *Set) WriteSet (Z, S uint) {
+//
+  t:= ""
+  if s.EmptySet () {
+    scr.Clr (Z, S, nAttrs, 1)
+  } else {
+    for a:= 1; a < nAttrs; a++ {
+      if s.m [a] {
+        t += string(Text[a][0])
+      } else {
+        t += " "
+      }
+    }
+    setbx.Write (t, Z, S)
+  }
+}
+
+
+func (x *Imp) Edit (Z, S uint) {
+//
+  T:= Text [x.a]
+  loop:
+  for {
+    bx.Edit (&T, Z, S)
+    for a:= byte(0); a < nAttrs; a++ {
+      if T [0] == Text [a][0] {
+        x.a = a
+        x.Write (Z, S)
+        break loop
+      }
+    }
+    errh.Error (Hilfetext, 0)
+  }
+}
+
+
+func (x *Imp) Codelen () uint {
+//
+  return 1
+}
+
+
+func (x *Imp) Encode () []byte {
+//
+  b:= make ([]byte, 1)
+  b[0] = x.a
+  return b
+}
+
+
+func (x *Imp) Decode (b []byte) {
+//
+  if b[0] < nAttrs {
+    x.a = b[0]
+  } else {
+    x.a = 0
+  }
+}
+
+
+func init () {
+//
+  Hilfetext = str.Clr (2)
+  for i:= 1; i < nAttrs; i++ { Hilfetext += Text [i] + "  " }
+  setbx.Wd (nAttrs)
+  var _ Attribute = New ()
+}

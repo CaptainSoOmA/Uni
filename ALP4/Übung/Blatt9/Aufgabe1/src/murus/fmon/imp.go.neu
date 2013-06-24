@@ -1,0 +1,135 @@
+package fmon
+
+// (c) Christian Maurer   v. 121114 - license see murus.go
+
+import (
+  . "murus/ker"; . "murus/obj"; "murus/perm"
+//  "murus/errh"
+  "murus/host"; "murus/nchan"
+)
+const
+  pack = "fmon"
+type
+  Imp struct {
+      object Any
+      nFuncs uint
+          ch []*nchan.Imp
+           f FuncSpectrum
+           s string // only for test purposes
+           p PredSpectrum
+          pm *perm.Imp
+    isServer,
+        gone bool
+      serve0 Stmt
+             }
+var
+  tst bool = true
+
+
+func New0 (a Any, n uint, f FuncSpectrum, p PredSpectrum, s string, port uint) *Imp {
+//
+  if n == 0 { Stop (pack, 1) }
+// if tst { println ("fmon.New0 started for host", h) }
+  x:= new (Imp)
+  x.object = Clone (a)
+  x.nFuncs = n
+  x.ch = make ([]*nchan.Imp, x.nFuncs)
+  x.f, x.p, x.s = f, p, s
+  x.serve0 = Null
+  x.pm = perm.New (x.nFuncs)
+  x.isServer = host.Local (s)
+  for i:= uint(0); i < x.nFuncs; i++ {
+    x.ch[i] = nchan.New0 (x.object, s, uint16(port + i), false)
+    if x.ch[i].IsServer() != x.isServer { Stop (pack, 2) }
+  }
+  if tst {
+    print ("fmon.New0 ok for "); if x.isServer { print ("server ") } else { print ("client ") }; println (s)
+  }
+  return x
+}
+
+
+func (x *Imp) Go () {
+//
+  if x.gone {
+    return
+  }
+  x.gone = true
+  if tst {
+    print ("fmon.Go will start for "); if x.isServer { print ("server ") } else { print ("client ") }; println (x.s)
+  }
+  for i:= uint(0); i < x.nFuncs; i++ {
+    x.ch[i].Go ()
+  }
+  if tst { println ("fmon.Go: ch[i].Go ok", 0) }
+  if ! x.isServer {
+    if tst { println ("fmon.Go was started for client ", x.s) }
+    return
+  }
+  x.serve0 ()
+  if tst { println ("fmon.Go was started for server ", x.s) }
+  for {
+    x.pm.Permute ()
+    for i:= uint(0); i < x.nFuncs; i++ {
+      j:= x.pm.F (i)
+      in, out:= x.ch[j].Chan()
+      select {
+      case a, p:= <-When (x.p (x.object, j), in):
+//                             ^^^^^^^
+//    Hier brauchen wir neben "object" im Grunde noch ein weiteres;
+//    dabei muss eigentlich auch ein anderer Typ möglich sein,
+//    was dazu führt, dass zwei verschiebene Kanäle gebraucht werden.
+        if p {
+          a = x.f (a, j) // interface is nil ?
+          out <- a // ist am Schluss nil
+        } else {
+//          errh.Error ("client off", 0)
+        }
+      default: // TODO necessary ?
+      }
+      Sleep (1)
+    }
+  }
+  if tst { print ("fmon.Go was started for server", x.s) }
+}
+
+
+func New (a Any, n uint, f FuncSpectrum, p PredSpectrum, server string, port uint) *Imp {
+//
+  x:= New0 (a, n, f, p, server, port)
+  x.Go ()
+  return x
+}
+
+
+func (x *Imp) Prepare (s Stmt) {
+//
+  x.serve0 = s
+}
+
+
+func (x *Imp) F (a Any, i uint) Any {
+//
+  if ! x.gone { Stop (pack, 3) }
+  if x.ch[i] == nil { Stop (pack, 4) }
+  if tst { println ( "fmon.F will senden" ) }
+  x.ch[i].Send (a)
+  if tst { println ( "fmon.F hat gesendet" ) }
+  return x.ch[i].Recv ()
+}
+
+
+// experimental
+func (x *Imp) S (a Any, i uint, c chan Any) {
+//
+  if tst { println ("fmon.S ruft fmon.F auf:") }
+  c <- x.F (a, i)
+}
+
+
+func (x *Imp) Terminate () {
+//
+  for i:= uint(0); i < x.nFuncs; i++ {
+    x.ch[i].Terminate()
+  }
+}

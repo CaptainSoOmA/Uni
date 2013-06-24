@@ -1,0 +1,52 @@
+package rw
+
+// (c) Christian Maurer   v. 17. April 2012 - license see murus.go
+
+// >>> readers/writers problem: implementation with critical resources // TODO
+
+import (
+  . "murus/object"
+  "murus/ker"
+  "murus/cr"
+)
+type
+  ImpCR struct {
+               cr.CriticalResource
+               }
+
+
+func NewCR () *ImpCR {
+//
+  m:= make ([][], 2)
+  m [reader] = make ([]uint, 1)
+  m [writer] = make ([]uint, 1)
+  m [reader][0] = ker.MaxCard
+  m [writer][0] = 1
+  x:= cr.New (2, 1)
+  x.Limit (m)
+  return x
+}
+
+
+func (x *ImpCR) ReaderIn () {
+//
+  x.Enter (reader)
+}
+
+
+func (x *ImpCR) ReaderOut () {
+//
+  x.Leave (reader)
+}
+
+
+func (x *ImpCR) WriterIn () {
+//
+  x.Enter (writer)
+}
+
+
+func (x *ImpCR) WriterOut () {
+//
+  x.Leave (writer)
+}

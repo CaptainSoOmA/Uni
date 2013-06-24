@@ -1,0 +1,127 @@
+/*Wir abstrahieren die Utensilien (Tabbak, Blättchen und Streichhölzer) indem wir ihnen
+Zahlenwerte (0,1,2) zuordnen.
+
+Ansich sollte der Aufruf von RaucherOut() von außen erfolgen. Da der Text aber 
+eine Endlosschleife impliziert und der Ablauf nach unserer Eiinschätzung so
+nachvollziehbarer wird, raucht ein Raucher eine Zigarette und ruft, wenn er 
+feritg ist die Wirtin (wobei er selber sofort wieder rauchen möchte)*/
+
+package main
+
+import (
+	"fmt"
+	"math/rand"
+	"time"
+	. "sync"
+)
+
+//Raucher haben jeweils nur ein Utensil!
+type Raucher struct {
+	Name string
+	Utensil int
+}
+
+//Initialisierung hat korrekt zu erfolgen (wird nicht überprüft)
+func NewRaucher(n string, u int) *Raucher {
+	x:=new(Raucher)
+	x.Utensil = u
+	x.Name = n
+	return x
+}
+
+//Die Wirtin bringt nur 2 der 3 benötigten Utensilien, wir vermerken welches 
+//sie nicht bringt
+type Wirtin struct {
+	missing_utensil int
+	mutex          Mutex
+	missing        *Cond
+}
+
+//Wurde die Wirtin noch nicht gerufen hat sie noch keine Utensilien gebracht (-1)
+func NewWirtin() *Wirtin {
+	x := new(Wirtin)
+	x.missing_utensil = -1
+	x.missing = NewCond(&x.mutex)
+	return x
+}
+
+//Wirting bringt 2 Utenssilien (Text spezifiziert nicht wie das abläuft,
+//daher hier randomisiert), somit also nicht fair (prizipiell könnte es sein
+//das sie bspw. niemals Blättchen bringt, womit 2 Raucher garnicht zum Zuge kommen)!
+func (x *Wirtin) RufeWirtin() {
+	fmt.Printf("Wirtin bringt neue Utensilien\n")
+	x.missing_utensil = rand.Intn(3)
+	fmt.Printf("Es fehlt nun Utensil %v\n", x.missing_utensil)
+}
+
+//Verklemmt wenn Wirtin nicht initial gerufen wird (Runtime Error)
+//Es sei dahingestellt wie akurat das die Realität wiederspiegelt, aber irgendwie
+//muss der Fall ja geregelt werden
+func (x *Wirtin) RaucherIn (r *Raucher) {
+	x.mutex.Lock()
+
+	//Wirtin wurde nicht intial gerufen
+	if x.missing_utensil == -1 {
+		x.missing.Wait()
+	}
+
+	//Wirtin hat nicht die vom Raucher benötigten Utensilien gebracht
+	//Jedesmal wenn die Wirten da war muss jeder Raucher erneut prüfen ob
+	//die passenden Untesilien gebracht wurden (for Schleife)
+	for x.missing_utensil != r.Utensil {
+		fmt.Printf("%v wartet nun\n", r.Name)
+		//Also muss er warten
+		x.missing.Wait()
+	}
+	//Es werden maxKippen geraucht über den Abend (siehe unten vor main())
+	maxKippen--;
+	fmt.Printf("%v raucht nun\n", r.Name)
+	//Rauchen dauert einen Moment (hier flinke Raucher)	
+	v()
+	//Raucher ist fertig	
+	x.raucherOut(r)
+	x.mutex.Unlock()
+}
+
+//Non Public (siehe ganz oben)
+func (x *Wirtin) raucherOut (r *Raucher) {
+	fmt.Printf("%v fertig\n", r.Name)
+
+	//main() terminiert wenn wir den Rauchern lang genug zugesehen haben
+	if maxKippen==0{
+		done<-true
+	}
+	
+	//Raucher ruft Wirtin, da neue Utensilien benötigt werden
+	x.RufeWirtin()
+	//Weise alle anderen Ruacher daraufhin das neue Utensilien da sind
+	x.missing.Signal()
+	//Raucher sind schlimme Suchtis
+	go x.RaucherIn(r)
+}
+
+func v() { time.Sleep(time.Duration(rand.Int63n(1e5))) }
+
+//nach dem Text wird bis in die Unendlichkeit weiter gepafft
+//Im Rahmen der Übung werden bloß 9 Zigaretten geraucht, dann terminiert die main()
+var maxKippen int = 9
+var done chan bool = make(chan bool)
+
+func main() {
+	//Erzeuge 3 Raucher
+	r1:=NewRaucher("Raucher1", 0)
+	r2:=NewRaucher("Raucher2", 1)
+	r3:=NewRaucher("Raucher3", 2)
+
+	//Erzeuge Wirting
+	w:=NewWirtin()
+
+	//Raucher rufen Wirtin
+	w.RufeWirtin()
+
+	go w.RaucherIn(r1)
+	go w.RaucherIn(r2)
+	go w.RaucherIn(r3)
+
+	<- done
+}

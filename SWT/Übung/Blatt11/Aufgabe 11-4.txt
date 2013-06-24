@@ -1,0 +1,7 @@
+Aufgabe 11-4: (Wasserfallkritik)
+
+In den letzten fünf bis zehn Jahren wurde das Wasserfallmodell zunehmend kritisiert und mehr „Agilität“ gefordert. Vorher jedoch war ein wasserfallartiges Vorgehen immer als das ideale Vorgehen beschrieben worden, an das man sich möglichst halten sollte. Wie erkälren Sie sich diese Entwicklung, d.h. wie kam es vermutlich zu dem Wasserfall als Ideal und warum löste man sich vermutlich später davon?
+
+
+Die beiden Modelle Stellen zwei Stadien einer softwartechnischen Evolution dar. Die Grundsätzliche Überlegung die wasserfallartigen Modellen zugrundeliegt ist, dass jeder Schritt nacheinander realisiert werden kann. Änderungen oder Fehler werden spätestens im nächsten Schritt festgestellt und können somit in einem Dokument festgehlaten werden. Dieser initiale Fehler wird von agilen Modellen nicht gemacht.
+Als Prozessmodelle eingeführt wurden geschah dies wahrscheinlich mit Annahmen die ein wasserfallartiges Vorgehen bevorzugen. Dieses Vorgehen ist auch wesentlich effizenter als kein Prozessmodell zu haben. Somit hat man bis vor zehn Jahren zunächst wasserfallartige Modelle realisiert. Dannach wurde klar, dass dieses Modell begrenzt ist. Dies konnte auch nicht mehr auf unfertige oder schlechte Realisierung geschoben werden. Somit begann der Paradigmen wechsel hin zu agileren Methoden.

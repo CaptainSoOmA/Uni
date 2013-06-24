@@ -1,0 +1,357 @@
+package seq
+
+// (c) Christian Maurer   v. 130308 - license see murus.go
+
+import (
+  . "murus/obj"; "murus/kbd"; . "murus/sort"
+  "murus/col"; "murus/font"
+//  "murus/errh"
+  "murus/day"; "murus/seq"; "murus/stk"
+  "murus/termin/termin"; "murus/termin/attr"
+)
+const
+  nTermine = uint(21)
+type
+  Imp struct {
+      termin [nTermine]*termin.Imp
+      anzahl uint
+             }
+var (
+  leererTermin *termin.Imp = termin.New ()
+  aktuellesFormat day.Period
+  markierteTermine *seq.Imp
+  Papierkorb *stk.Imp
+//  Muell *seq.Imp
+  dz uint
+)
+
+
+func New () *Imp {
+//
+  x:= new (Imp)
+  for i:= uint(0); i < nTermine; i++ {
+    x.termin[i] = termin.New ()
+  }
+  return x
+}
+
+
+func (x *Imp) Empty () bool {
+//
+  for i:= uint(0); i < nTermine; i++ {
+    if ! x.termin [i].Empty() {
+      return false
+    }
+  }
+  return true
+}
+
+
+func (x *Imp) Clr () {
+//
+  for i:= uint(0); i < nTermine; i++ {
+    x.termin[i].Clr()
+  }
+}
+
+
+func (x *Imp) Eq (X Object) bool {
+//
+  y, ok:= X.(*Imp)
+  if ! ok { return false }
+  for i:= uint(0); i < nTermine; i++ {
+    if ! x.termin[i].Eq (y.termin[i]) {
+      return false
+    }
+  }
+  return true
+}
+
+
+func (x *Imp) Less (Y Object) bool {
+//
+  return false
+}
+
+
+func (x *Imp) Copy (X Object) {
+//
+  y, ok:= X.(*Imp)
+  if ! ok { return }
+  for i:= uint(0); i < nTermine; i++ {
+    x.termin[i].Copy (y.termin[i])
+  }
+}
+
+
+func (x *Imp) Clone () Object {
+//
+  y:= New()
+  y.Copy (x)
+  return y
+}
+
+
+func (x *Imp) SetFormat (p day.Period) {
+//
+  aktuellesFormat = p
+  dz = 0
+  if x.anzahl == 0 { return }
+  switch aktuellesFormat { case day.Daily:
+    x.termin[0].SetFormat (termin.Lang)
+    dz = 1
+  case day.Weekly:
+    x.termin[0].SetFormat (termin.Kurz)
+    dz = 1
+  case day.Monthly:
+    // termin.SetFormat (termin.GanzKurz); dz = 0
+    x.termin[0].SetFormat (termin.Kurz)
+    // aus den Terminen werden nur die Terminattribute gebraucht
+  default: // Quatsch:
+    x.termin[0].SetFormat (termin.GanzKurz)
+  }
+}
+
+
+func (x *Imp) HasWord () bool {
+//
+  for i:= uint(0); i < nTermine; i++ {
+    if x.termin[i].HasWord () {
+       return true
+    }
+  }
+  return false
+}
+
+
+func (x *Imp) count () uint {
+//
+  n:= uint(0)
+  for i:= uint(0); i < nTermine; i++ {
+    if ! x.termin[i].Empty () {
+       n ++
+    }
+  }
+  return n
+}
+
+
+var
+  set *attr.Set = attr.NewSet()
+
+
+func (x *Imp) SetColours (f, b col.Colour) {
+//
+// dummy
+}
+
+
+func (x *Imp) Write (Z, S uint) {
+//
+  switch aktuellesFormat { case day.Daily, day.Weekly:
+//    termin[i].SetFormat (termin.Lang)
+    for i:= uint(0); i < nTermine; i++ {
+//      x.termin[i].Mark (markierteTermine.Contains (x.termin[i]))
+      x.termin[i].Write (Z + dz * i, S)
+    }
+  case day.Monthly:
+    set.ClearSet ()
+    for i:= uint(0); i < nTermine; i++ {
+      set.InsertSet (x.termin[i].Attribute ())
+    }
+    set.WriteSet (Z + 1, S)
+  }
+}
+
+
+func (x *Imp) SetFont (f font.Font) {
+//
+// dummy
+}
+
+
+func (x *Imp) Print (Z, S uint) {
+//
+  switch aktuellesFormat { case day.Daily:
+    for i:= uint(0); i < nTermine; i++ {
+      x.termin[i].Print (Z + i, S)
+    }
+  }
+}
+
+
+func (x *Imp) Edit (Z, S uint) {
+//
+  if aktuellesFormat != day.Daily { return }
+  index:= x.count ()
+  if index == nTermine {
+    index --
+  }
+  loop: for {
+    x.Write (Z, S)
+/*
+    pp:= x.Count ()
+    if pp > 0 {
+      if pp == x.Pos () {
+        Pos = pp
+        x.Seek (pp - 1)
+        t:= x.Get ().(*termin.Imp)
+        x.Seek (Pos)
+        if t.Empty () {
+          x.Jump (false)
+        }
+      }
+    }
+*/
+/*
+    j:= x.anzahl
+    if j < i {
+      globalerTermin = x.Get ().(*termin.Imp)
+      globalerTermin.Mark (markierteTermine.Contains (globalerTermin))
+    } else {
+      globalerTermin.Clr ()
+    }
+*/
+    x.termin[index].Edit (Z + dz * index, S)
+    var e uint
+    switch kbd.LastCommand (&e) { case kbd.Enter:
+      switch e { case 0, 1:
+        if index + 1 < nTermine - 1 {
+          index ++
+        } else {
+          break loop
+        }
+      default:
+        break loop
+      }
+    case kbd.Esc:
+      break loop
+    case kbd.Up:
+      if index > 0 {
+        index --
+      }
+    case kbd.Down:
+      if index + 1 < nTermine - 1 {
+        index ++
+      }
+    case kbd.Pos1:
+      index = 0
+    case kbd.End:
+      index = nTermine - 1
+      for x.termin[index].Empty() && index > 0 {
+        index --
+      }
+    case kbd.Mark:
+      if e == 0 {
+        if ! markierteTermine.Ex (x.termin[index]) {
+          markierteTermine.Ins (x.termin[index])
+        }
+        if index + 1 < nTermine - 1 {
+          index ++
+        }
+      } else {
+        for i:= uint(0); i < nTermine; i++ {
+          if ! x.termin[i].Empty () {
+            if markierteTermine.Num() + 1 < nTermine {
+              markierteTermine.Ins (x.termin[i])
+            } else {
+              // TODO
+            }
+          }
+        }
+      }
+    case kbd.Demark:
+      if e == 0 {
+        if markierteTermine.Ex (x.termin[index]) {
+          markierteTermine.Del()
+        }
+        if index + 1 < nTermine - 1 {
+          index ++
+        }
+      } else {
+        markierteTermine.Clr()
+      }
+    case kbd.Deposit:
+      if e == 0 {
+        Papierkorb.Push (x.termin[index])
+        x.termin[index].Clr()
+        x.sort ()
+        x.Write (Z, S)
+      } else {
+        ; // TODO alle Termine in Papierkorb ?
+      }
+/*
+      Papierkorb.Clr ()
+//      Papierkorb.Cut (func (a Any) bool { globalerTermin = a.(*termin.Imp);
+//                        return markierteTermine.Contains (globalerTermin) })
+      markierteTermine, Papierkorb = Papierkorb, markierteTermine // die sind jetzt leer
+*/
+    case kbd.Paste:
+      if e == 0 {
+        if x.count() + 1 < nTermine && ! Papierkorb.Empty() {
+          x.termin[x.count()] = Papierkorb.Top().(*termin.Imp)
+          Papierkorb.Pop()
+        }
+        x.sort ()
+        x.Write (Z, S)
+      } else {
+        ; // TODO oberste Termine aus Papierkorb zurück, soweit < nTermine ?
+      }
+    }
+  }
+  x.sort()
+}
+
+
+func (x *Imp) sort () {
+//
+  a:= make ([]Any, nTermine)
+  for i:= uint(0); i < nTermine; i++ {
+    a[i] = x.termin[i]
+  }
+  Sort (a)
+  for i:= uint(0); i < nTermine; i++ {
+    x.termin[i] = a[i].(*termin.Imp)
+  }
+}
+
+
+func (x *Imp) Codelen () uint {
+//
+  return nTermine * x.termin[0].Codelen()
+}
+
+
+func (x *Imp) Encode () []byte {
+//
+  b:= make ([]byte, x.Codelen())
+  c:= x.termin[0].Codelen()
+  a:= uint(0)
+  for i:= uint(0); i < nTermine; i++ {
+    copy (b[a:a+c], x.termin[i].Encode())
+    a += c
+  }
+  return b
+}
+
+
+func (x *Imp) Decode (b []byte) {
+//
+  c:= x.termin[0].Codelen()
+  a:= uint(0)
+  for i:= uint(0); i < nTermine; i++ {
+    x.termin[i].Decode (b[a:a+c])
+    a += c
+  }
+}
+
+
+func init () {
+//
+  markierteTermine = seq.New (leererTermin)
+  markierteTermine.Sort ()
+  Papierkorb = stk.New (leererTermin)
+//  Muell = .New (leererTermin)
+//  SetFormat (day.Daily)
+  var _ Sequence = New ()
+}

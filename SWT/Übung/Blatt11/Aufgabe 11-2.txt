@@ -1,0 +1,21 @@
+Aufgabe 11-2: (Auswahl von Prozessmodellen)
+
+
+
+1.Die Steuerung für ein Antiblockiersystem (ABS) für Autos
+
+Wasserfallartig - Ein wasserfallartiger Prozess ist für eine solches System am bseten geignet. Bei diesem Beispiel stehen die Anforderungen des Systems zu Projektbeginn eindeutig fest. (ein solch komplexes System braucht insgesammt für das gesmate Produkt ein sehr genau definiertes vorgehen). Um solche Anforderunegn umzusetzen (vorallem diese Anforderunegn mit maximaler Qualität umzusetzen) bedarf es einenes sehr genauen Prozesses. Außerdem lässt ein wasserfallartiger Prozesses eine sehr genaue Planung zu. Dies ist bei der Interaktion mit dem restliochen Prozessesen des Projekts von Vorteil.
+
+
+
+
+2.Ein Learning Management System
+
+evolutionär - Bei einem solchen Sytsem stehen wahrscheinlich zu beginn des Projekts noch nicht alle Anforderungen fest oder sie ändern sich während des Projekts. In einer solchen Situation ist man auf das Feedback der User angewiesen. Man kann ein solches Projekt nur zum Wrfolg führen, wenn man bereit ist seinen ursprünglichen Vorstellungen völlig über den Haufen zu werfen. Ein interaktiver Ansatz ist diesem Vorgehen am ehesten gewachsen.
+
+
+
+
+3.Eine interaktive Selbstbedienungskonsole für große Bahnhöfe, an dem man die aktuellen Ankunfts-und Abfahrtszeiten von Zügen einsehen kann.
+
+inkrementell - Ein solches Sytsem hat in, Teilen genau, Anforderunegn (z.B. Anbindung an bestehende Systeme) und, in anderen Teilen, recht lose Vorstellungen (UI, Benutzung). Dieses Gemisch an Anforderunegn bedarf eines Prozessmodell, dass beide Aspekte einfanegn kann. Ein inkrementeller Ansatz ist hierfür geignet. 

@@ -1,0 +1,18 @@
+Aufgabe 11-3: (Extreme Programming)
+
+
+Ein Projekt, das mit Extreme Programming (Abk. ___[1]___), durchgeführt wird, läuft grundsätzlich in Iterationen ab. Jede _____[2]_____ endet mit einer neuen Softwareversion, in der einige neue Funktionalitäten zu dem System hinzugefügt wurden. Welche dies sind, schreibt der Kunde auf so genannte _____[3]_____ (engl.). Am ___[4]____ einer jeden Iteration besprechen der ___[5]__ und die Entwickler, welche Funktionalitäten in ihr realisiert werden sollen. Auch während der Entwicklung ist der Kunde immer _____[6]_____. Er definiert zudem _____[7]____, um am __[8]_ jeder Iteration die Funktionalität zu testen. Auf Entwicklerseite gibt es auch einige besondere Praktiken, z.B. _____[9]_____, ____[10]____ oder die gemeinsame Verantwortung.
+
+
+
+
+[1] 	: xp
+[2] 	: Iteration
+[3] 	: Goals
+[4] 	: Beginn
+[5] 	: Kunde
+[6] 	: entscheidungsbefugt
+[7] 	: Anoderderunegn
+[8] 	: Ende
+[9] 	: pair Programming
+[10] 	: Unit Testing

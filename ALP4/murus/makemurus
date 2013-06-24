@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# makemurus
+#
+# (c) Christian Maurer   v. 130416
+
+m=murus
+cd $GOSRC/$m
+go install -v $m
+
+g=/main.go
+s=$(ls *$g)
+for p in $s; do
+  go install -v $m/${p%$g}
+done
+$m
